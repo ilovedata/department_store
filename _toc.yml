@@ -12,8 +12,9 @@ chapters:
     sections:
       - file: notebook/day2/dataframe_introduction
       - file: notebook/day2/dataframe_summary
-#      - file: notebook/day2/dataframe_group
-#      - file: notebook/day2/dataframe_merge
-#  - file: notebook/day3/day_intro
-#    sections:
-#      - file: notebook/day3/practice_day3
+      - file: notebook/day2/dataframe_group
+      - file: notebook/day2/dataframe_merge
+  - file: notebook/day3/day_intro
+    sections:
+      - file: notebook/day3/correlation
+#     - file: notebook/day3/practice_day3
