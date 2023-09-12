@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>데이터프레임의 결합 &#8212; 파이썬 프로그래밍의 기초와 데이터 활용 방법</title>
+    <title>2.4. 데이터프레임의 결합 &#8212; 파이썬 프로그래밍의 기초와 데이터 활용 방법</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,6 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. 두 변수의 관계" href="../day3/day_intro.html" />
+    <link rel="prev" title="2.3. 데이터 그룹화" href="dataframe_group.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -106,7 +108,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../day1/intro-python.html">
    1. 파이썬 소개
@@ -124,16 +126,16 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="dataframe.html">
    2. 데이터프레임
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="dataframe_introduction.html">
      2.1. 데이터프레임의 정의
@@ -142,6 +144,33 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="dataframe_summary.html">
      2.2. 데이터프레임의 요약
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dataframe_group.html">
+     2.3. 데이터 그룹화
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.4. 데이터프레임의 결합
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../day3/day_intro.html">
+   3. 두 변수의 관계
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../day3/correlation.html">
+     3.1. 두 변수의 관계
     </a>
    </li>
   </ul>
@@ -350,7 +379,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id4">
-   전체 사업장 데이터와 음식 사업장 데이터의 결합
+   두 개 자료의 결합: 예제
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -389,7 +418,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id4">
-   전체 사업장 데이터와 음식 사업장 데이터의 결합
+   두 개 자료의 결합: 예제
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -408,8 +437,9 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>데이터프레임의 결합<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
-<p>데이터를 이용하여 분석을 하는 경우 사용할 자료가 두 개 이상이 경우는 매우 흔한 일이다. 실제로 데이터 분석에서 하나의 자료만 가지고 수행하는 일은 매우 드물다. 이 절에서는 여러 개의 자료를 사용하는 경우 두 개의 자료를 서로 결합하여 새로운 자료를 만드는 것을 실습한다. 살펴 볼 내용은 다음과 같다.</p>
+<h1><span class="section-number">2.4. </span>데이터프레임의 결합<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>데이터를 이용하여 분석을 하는 경우 사용할 자료가 두 개 이상이 경우는 매우 흔한 일이다. 실제로 데이터 분석에서 하나의 자료만 가지고 수행하는 일은 매우 드물다.</p>
+<p>이 절에서는 여러 개의 자료를 사용하는 경우 두 개의 자료를 서로 결합하여 새로운 자료를 만드는 것을 실습한다. 살펴 볼 내용은 다음과 같다.</p>
 <ul class="simple">
 <li><p>데이터의 결합</p></li>
 <li><p>식별자의 불일치</p></li>
@@ -926,7 +956,7 @@ title="Print to PDF"
 </table>
 </div></div></div>
 </div>
-<p>선택명령문 <code class="docutils literal notranslate"><span class="pre">how='inner'</span></code>이  결합시 기준이 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df1</span></code>&amp; <code class="docutils literal notranslate"><span class="pre">df4</span></code> 에서 공통된 것임을 알려준다.</p>
+<p>선택명령문 <code class="docutils literal notranslate"><span class="pre">how='inner'</span></code>이  결합시 기준이 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df1</span></code> 과 <code class="docutils literal notranslate"><span class="pre">df4</span></code> 에서 공통된 것임을 알려준다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df4</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
@@ -974,7 +1004,7 @@ title="Print to PDF"
 </table>
 </div></div></div>
 </div>
-<p>선택명령문 <code class="docutils literal notranslate"><span class="pre">how='outer'</span></code>이  결합시 기준이 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df1</span></code>&amp; <code class="docutils literal notranslate"><span class="pre">df4</span></code>의 모든 것임을 알려준다.</p>
+<p>선택명령문 <code class="docutils literal notranslate"><span class="pre">how='outer'</span></code>이  결합시 기준이 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df1</span></code> 과 <code class="docutils literal notranslate"><span class="pre">df4</span></code>의 모든 것임을 알려준다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df4</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span> 
@@ -1036,13 +1066,15 @@ title="Print to PDF"
 </div>
 </section>
 <section id="id4">
-<h2>전체 사업장 데이터와 음식 사업장 데이터의 결합<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
-<p>이번에는 전체 사업장 데이터 (<code class="docutils literal notranslate"><span class="pre">전체_사업장.csv</span></code>)와 음식 사업장 데이터 (<code class="docutils literal notranslate"><span class="pre">음식_사업장.csv</span></code>) 을 결합하는 작업을 해보려고 한다.
-전체 사업장 데이터에는 2010년부터 2021년까지 11년간의 7개 특별광역시(서울, 인천, 대전, 광주, 대구, 울산, 부산) 정보가 있다.</p>
+<h2>두 개 자료의 결합: 예제<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<p>이번에는 가게금융복지 조사에서 얻은 금용에 대한 정보를 가진 자료와 소비에 대한 정보를 가진 자료를 결합하는 예제를 살펴보자.</p>
+<p>먼저 가게금융복지 조사에서 얻은 금용에 대한 정보를 가진 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df1</span></code> 을 다음과 같이 만든다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://uos-bigdata.github.io/lab_data/docs/assets/data_lab_bokji/dat_total.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;UTF8&#39;</span><span class="p">)</span>
-<span class="n">total</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://uos-bigdata.github.io/lab_data/docs/assets/data_lab_depart/2016_housemasterdata_part1.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;cp949&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[[</span><span class="s1">&#39;조사연도&#39;</span><span class="p">,</span><span class="s1">&#39;가구고유번호&#39;</span><span class="p">,</span><span class="s1">&#39;수도권여부&#39;</span><span class="p">,</span><span class="s1">&#39;가구주_성별코드&#39;</span><span class="p">,</span><span class="s1">&#39;가구원수&#39;</span><span class="p">,</span> <span class="s1">&#39;부채보유여부&#39;</span><span class="p">,</span>	<span class="s1">&#39;자산금액&#39;</span><span class="p">,</span>	<span class="s1">&#39;부채금액&#39;</span><span class="p">,</span>	<span class="s1">&#39;근로소득&#39;</span><span class="p">,</span>	<span class="s1">&#39;사업소득&#39;</span><span class="p">,</span> <span class="s1">&#39;재산소득&#39;</span><span class="p">]]</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+           
 </pre></div>
 </div>
 </div>
@@ -1065,431 +1097,99 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>연도</th>
-      <th>시도</th>
-      <th>산재_평균근로자수</th>
-      <th>산재만_가입된사업장수</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_평균근로자수</th>
-      <th>고용만_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
+      <th>조사연도</th>
+      <th>가구고유번호</th>
+      <th>수도권여부</th>
+      <th>가구주_성별코드</th>
+      <th>가구원수</th>
+      <th>부채보유여부</th>
+      <th>자산금액</th>
+      <th>부채금액</th>
+      <th>근로소득</th>
+      <th>사업소득</th>
+      <th>재산소득</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>2010.0</td>
-      <td>광주</td>
-      <td>6.863187</td>
-      <td>52</td>
-      <td>1820</td>
-      <td>6.847419</td>
-      <td>1</td>
-      <td>1763</td>
+      <td>2016</td>
+      <td>10200111</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>부채 보유</td>
+      <td>76202</td>
+      <td>22200</td>
+      <td>4000</td>
+      <td>5000</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2010.0</td>
-      <td>대구</td>
-      <td>7.366627</td>
-      <td>82</td>
-      <td>2523</td>
-      <td>7.051240</td>
-      <td>7</td>
-      <td>2420</td>
+      <td>2016</td>
+      <td>10200121</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>부채 보유</td>
+      <td>116466</td>
+      <td>45000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2010.0</td>
-      <td>대전</td>
-      <td>9.100746</td>
-      <td>59</td>
-      <td>1340</td>
-      <td>8.816680</td>
+      <td>2016</td>
+      <td>10200151</td>
+      <td>수도권</td>
+      <td>여자</td>
       <td>3</td>
-      <td>1271</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2010.0</td>
-      <td>부산</td>
-      <td>8.126126</td>
-      <td>121</td>
-      <td>3108</td>
-      <td>7.622692</td>
-      <td>11</td>
-      <td>2979</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2010.0</td>
-      <td>서울</td>
-      <td>10.971553</td>
-      <td>343</td>
-      <td>11741</td>
-      <td>10.869985</td>
-      <td>30</td>
-      <td>11391</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>79</th>
-      <td>2021.0</td>
-      <td>대전</td>
-      <td>2.658709</td>
-      <td>434</td>
-      <td>7917</td>
-      <td>1.887973</td>
-      <td>369</td>
-      <td>8007</td>
-    </tr>
-    <tr>
-      <th>80</th>
-      <td>2021.0</td>
-      <td>부산</td>
-      <td>2.874647</td>
-      <td>688</td>
-      <td>17367</td>
-      <td>1.909389</td>
-      <td>660</td>
-      <td>17680</td>
-    </tr>
-    <tr>
-      <th>81</th>
-      <td>2021.0</td>
-      <td>서울</td>
-      <td>7.487265</td>
-      <td>2375</td>
-      <td>59009</td>
-      <td>2.020801</td>
-      <td>1410</td>
-      <td>58700</td>
-    </tr>
-    <tr>
-      <th>82</th>
-      <td>2021.0</td>
-      <td>울산</td>
-      <td>3.442591</td>
-      <td>273</td>
-      <td>5095</td>
-      <td>2.080108</td>
-      <td>262</td>
-      <td>5193</td>
-    </tr>
-    <tr>
-      <th>83</th>
-      <td>2021.0</td>
-      <td>인천</td>
-      <td>2.604997</td>
-      <td>703</td>
-      <td>15648</td>
-      <td>1.916362</td>
-      <td>444</td>
-      <td>15615</td>
-    </tr>
-  </tbody>
-</table>
-<p>84 rows × 8 columns</p>
-</div></div></div>
-</div>
-<p>음식 사업장 데이터에는 2017년부터 2021년까지 5년간의 7개 특별광역시(서울, 인천, 대전, 광주, 대구, 울산, 부산) 정보가 있다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">food</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://uos-bigdata.github.io/lab_data/docs/assets/data_lab_bokji/data_food.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;UTF8&#39;</span><span class="p">)</span>
-<span class="n">food</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>시도</th>
-      <th>연도</th>
-      <th>산재_음식사업장수</th>
-      <th>고용_음식사업장수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>광주</td>
-      <td>2017.0</td>
-      <td>796</td>
-      <td>801</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>광주</td>
-      <td>2018.0</td>
-      <td>1121</td>
-      <td>1136</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>광주</td>
-      <td>2019.0</td>
-      <td>1674</td>
-      <td>1679</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>광주</td>
-      <td>2020.0</td>
-      <td>1757</td>
-      <td>1763</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>광주</td>
-      <td>2021.0</td>
-      <td>1727</td>
-      <td>1734</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>대구</td>
-      <td>2017.0</td>
-      <td>1367</td>
-      <td>1375</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>대구</td>
-      <td>2018.0</td>
-      <td>1739</td>
-      <td>1749</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>대구</td>
-      <td>2019.0</td>
-      <td>2523</td>
-      <td>2531</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>대구</td>
-      <td>2020.0</td>
-      <td>2428</td>
-      <td>2434</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>대구</td>
-      <td>2021.0</td>
-      <td>2619</td>
-      <td>2624</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>대전</td>
-      <td>2017.0</td>
-      <td>933</td>
-      <td>927</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>대전</td>
-      <td>2018.0</td>
-      <td>1093</td>
-      <td>1131</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>대전</td>
-      <td>2019.0</td>
-      <td>1588</td>
-      <td>1606</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>대전</td>
-      <td>2020.0</td>
-      <td>1767</td>
-      <td>1781</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>대전</td>
-      <td>2021.0</td>
-      <td>1634</td>
-      <td>1652</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>부산</td>
-      <td>2017.0</td>
-      <td>1713</td>
-      <td>1720</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>부산</td>
-      <td>2018.0</td>
-      <td>2159</td>
-      <td>2168</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>부산</td>
-      <td>2019.0</td>
-      <td>3205</td>
-      <td>3215</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>부산</td>
-      <td>2020.0</td>
-      <td>3508</td>
-      <td>3508</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>부산</td>
-      <td>2021.0</td>
-      <td>3829</td>
-      <td>3836</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>서울</td>
-      <td>2017.0</td>
-      <td>6069</td>
-      <td>6117</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>서울</td>
-      <td>2018.0</td>
-      <td>7967</td>
+      <td>부채 보유</td>
+      <td>125360</td>
       <td>8000</td>
+      <td>12600</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>22</th>
-      <td>서울</td>
-      <td>2019.0</td>
-      <td>10576</td>
-      <td>10596</td>
+      <th>3</th>
+      <td>2016</td>
+      <td>10200161</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>5</td>
+      <td>부채 보유</td>
+      <td>79406</td>
+      <td>25500</td>
+      <td>0</td>
+      <td>4200</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>23</th>
-      <td>서울</td>
-      <td>2020.0</td>
-      <td>10612</td>
-      <td>10631</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>서울</td>
-      <td>2021.0</td>
-      <td>10752</td>
-      <td>10796</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>울산</td>
-      <td>2017.0</td>
-      <td>541</td>
-      <td>541</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>울산</td>
-      <td>2018.0</td>
-      <td>651</td>
-      <td>654</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>울산</td>
-      <td>2019.0</td>
-      <td>996</td>
-      <td>998</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>울산</td>
-      <td>2020.0</td>
-      <td>1137</td>
-      <td>1138</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>울산</td>
-      <td>2021.0</td>
-      <td>1046</td>
-      <td>1048</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>인천</td>
-      <td>2017.0</td>
-      <td>1319</td>
-      <td>1318</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>인천</td>
-      <td>2018.0</td>
-      <td>1817</td>
-      <td>1835</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>인천</td>
-      <td>2019.0</td>
-      <td>2718</td>
-      <td>2731</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>인천</td>
-      <td>2020.0</td>
-      <td>2886</td>
-      <td>2892</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>인천</td>
-      <td>2021.0</td>
-      <td>2891</td>
-      <td>2898</td>
+      <th>4</th>
+      <td>2016</td>
+      <td>10200171</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>2</td>
+      <td>부채 보유</td>
+      <td>45600</td>
+      <td>27800</td>
+      <td>12420</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">연도</span></code>,<code class="docutils literal notranslate"><span class="pre">시도</span></code>로 데이터를 결합해줄 것이기 때문에 먼저 사업장 데이터처럼 음식 사업장 데이터를 연도 기준으로 정렬해준다.</p>
+<p>다음으로 같은 조사에서 얻어진 가구별 소비와 지출에 대한 자료를 불러외서 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df2</span></code>를 만든다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span><span class="s2">&quot;연도&quot;</span><span class="p">)</span>
-<span class="n">food</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://uos-bigdata.github.io/lab_data/docs/assets/data_lab_depart/2016_housemasterdata_part2.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;cp949&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1512,1390 +1212,281 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>시도</th>
-      <th>연도</th>
-      <th>산재_음식사업장수</th>
-      <th>고용_음식사업장수</th>
+      <th>가구고유번호</th>
+      <th>소비지출</th>
+      <th>지출_소비지출_식료품_외식비</th>
+      <th>지출_소비지출_주거비</th>
+      <th>지출_소비지출_교육비_보육료포함</th>
+      <th>지출_소비지출_의료비</th>
+      <th>지출_소비지출_교통비</th>
+      <th>지출_소비지출_통신비</th>
+      <th>지출_소비지출_경조비및기타소비지출</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>광주</td>
-      <td>2017.0</td>
-      <td>796</td>
-      <td>801</td>
+      <td>10200111</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>20</th>
-      <td>서울</td>
-      <td>2017.0</td>
-      <td>6069</td>
-      <td>6117</td>
+      <th>1</th>
+      <td>10200121</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>30</th>
-      <td>인천</td>
-      <td>2017.0</td>
-      <td>1319</td>
-      <td>1318</td>
+      <th>2</th>
+      <td>10200151</td>
+      <td>3430</td>
+      <td>800</td>
+      <td>390</td>
+      <td>0</td>
+      <td>200</td>
+      <td>430</td>
+      <td>310</td>
+      <td>1300</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>대구</td>
-      <td>2017.0</td>
-      <td>1367</td>
-      <td>1375</td>
+      <th>3</th>
+      <td>10200161</td>
+      <td>3176</td>
+      <td>1200</td>
+      <td>240</td>
+      <td>960</td>
+      <td>36</td>
+      <td>120</td>
+      <td>240</td>
+      <td>380</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>대전</td>
-      <td>2017.0</td>
-      <td>933</td>
-      <td>927</td>
+      <th>4</th>
+      <td>10200171</td>
+      <td>2905</td>
+      <td>1060</td>
+      <td>190</td>
+      <td>0</td>
+      <td>35</td>
+      <td>700</td>
+      <td>120</td>
+      <td>800</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>이제 두 개의 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df1</span></code> 과 <code class="docutils literal notranslate"><span class="pre">df2</span></code> 를 <code class="docutils literal notranslate"><span class="pre">가구고유번호</span></code> 를 식별자로 하여 결합해 보자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_m</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;가구고유번호&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>  
+<span class="n">df_m</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>조사연도</th>
+      <th>가구고유번호</th>
+      <th>수도권여부</th>
+      <th>가구주_성별코드</th>
+      <th>가구원수</th>
+      <th>부채보유여부</th>
+      <th>자산금액</th>
+      <th>부채금액</th>
+      <th>근로소득</th>
+      <th>사업소득</th>
+      <th>재산소득</th>
+      <th>소비지출</th>
+      <th>지출_소비지출_식료품_외식비</th>
+      <th>지출_소비지출_주거비</th>
+      <th>지출_소비지출_교육비_보육료포함</th>
+      <th>지출_소비지출_의료비</th>
+      <th>지출_소비지출_교통비</th>
+      <th>지출_소비지출_통신비</th>
+      <th>지출_소비지출_경조비및기타소비지출</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2016</td>
+      <td>10200111</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>부채 보유</td>
+      <td>76202</td>
+      <td>22200</td>
+      <td>4000</td>
+      <td>5000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>25</th>
-      <td>울산</td>
-      <td>2017.0</td>
-      <td>541</td>
-      <td>541</td>
+      <th>1</th>
+      <td>2016</td>
+      <td>10200121</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>부채 보유</td>
+      <td>116466</td>
+      <td>45000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>15</th>
-      <td>부산</td>
-      <td>2017.0</td>
-      <td>1713</td>
-      <td>1720</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>서울</td>
-      <td>2018.0</td>
-      <td>7967</td>
+      <th>2</th>
+      <td>2016</td>
+      <td>10200151</td>
+      <td>수도권</td>
+      <td>여자</td>
+      <td>3</td>
+      <td>부채 보유</td>
+      <td>125360</td>
       <td>8000</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>대전</td>
-      <td>2018.0</td>
-      <td>1093</td>
-      <td>1131</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>울산</td>
-      <td>2018.0</td>
-      <td>651</td>
-      <td>654</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>대구</td>
-      <td>2018.0</td>
-      <td>1739</td>
-      <td>1749</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>인천</td>
-      <td>2018.0</td>
-      <td>1817</td>
-      <td>1835</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>광주</td>
-      <td>2018.0</td>
-      <td>1121</td>
-      <td>1136</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>부산</td>
-      <td>2018.0</td>
-      <td>2159</td>
-      <td>2168</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>서울</td>
-      <td>2019.0</td>
-      <td>10576</td>
-      <td>10596</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>인천</td>
-      <td>2019.0</td>
-      <td>2718</td>
-      <td>2731</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>울산</td>
-      <td>2019.0</td>
-      <td>996</td>
-      <td>998</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>부산</td>
-      <td>2019.0</td>
-      <td>3205</td>
-      <td>3215</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>광주</td>
-      <td>2019.0</td>
-      <td>1674</td>
-      <td>1679</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>대전</td>
-      <td>2019.0</td>
-      <td>1588</td>
-      <td>1606</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>대구</td>
-      <td>2019.0</td>
-      <td>2523</td>
-      <td>2531</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>부산</td>
-      <td>2020.0</td>
-      <td>3508</td>
-      <td>3508</td>
+      <td>12600</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3430</td>
+      <td>800</td>
+      <td>390</td>
+      <td>0</td>
+      <td>200</td>
+      <td>430</td>
+      <td>310</td>
+      <td>1300</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>광주</td>
-      <td>2020.0</td>
-      <td>1757</td>
-      <td>1763</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>울산</td>
-      <td>2020.0</td>
-      <td>1137</td>
-      <td>1138</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>인천</td>
-      <td>2020.0</td>
-      <td>2886</td>
-      <td>2892</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>대구</td>
-      <td>2020.0</td>
-      <td>2428</td>
-      <td>2434</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>서울</td>
-      <td>2020.0</td>
-      <td>10612</td>
-      <td>10631</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>대전</td>
-      <td>2020.0</td>
-      <td>1767</td>
-      <td>1781</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>서울</td>
-      <td>2021.0</td>
-      <td>10752</td>
-      <td>10796</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>울산</td>
-      <td>2021.0</td>
-      <td>1046</td>
-      <td>1048</td>
+      <td>2016</td>
+      <td>10200161</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>5</td>
+      <td>부채 보유</td>
+      <td>79406</td>
+      <td>25500</td>
+      <td>0</td>
+      <td>4200</td>
+      <td>0</td>
+      <td>3176</td>
+      <td>1200</td>
+      <td>240</td>
+      <td>960</td>
+      <td>36</td>
+      <td>120</td>
+      <td>240</td>
+      <td>380</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>광주</td>
-      <td>2021.0</td>
-      <td>1727</td>
-      <td>1734</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>대전</td>
-      <td>2021.0</td>
-      <td>1634</td>
-      <td>1652</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>부산</td>
-      <td>2021.0</td>
-      <td>3829</td>
-      <td>3836</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>대구</td>
-      <td>2021.0</td>
-      <td>2619</td>
-      <td>2624</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>인천</td>
-      <td>2021.0</td>
-      <td>2891</td>
-      <td>2898</td>
+      <td>2016</td>
+      <td>10200171</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>2</td>
+      <td>부채 보유</td>
+      <td>45600</td>
+      <td>27800</td>
+      <td>12420</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2905</td>
+      <td>1060</td>
+      <td>190</td>
+      <td>0</td>
+      <td>35</td>
+      <td>700</td>
+      <td>120</td>
+      <td>800</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p>두 데이터를 결합하기에 앞서 전체 사업장 데이터(<code class="docutils literal notranslate"><span class="pre">total</span></code>)와 음식 사업장 데이터(<code class="docutils literal notranslate"><span class="pre">food</span></code>)를 가공해 줄 것이다.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">total</span></code>에서는 결합에 필요한 <code class="docutils literal notranslate"><span class="pre">연도</span></code>, <code class="docutils literal notranslate"><span class="pre">시도</span></code>, <code class="docutils literal notranslate"><span class="pre">산재만_가입된사업장수</span></code>, <code class="docutils literal notranslate"><span class="pre">고용_가입된사업장수</span></code> 열을 추출하고 <code class="docutils literal notranslate"><span class="pre">2015년~2018년</span></code> 4년도의 데이터를 저장한다. <code class="docutils literal notranslate"><span class="pre">시도</span></code> 열 중에서도 서울, 부산, 인천의 데이터만 사용할 것이다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">food</span></code>에서는 <code class="docutils literal notranslate"><span class="pre">2017~2019년</span></code> 3년도의 데이터를 추출할 것이다. <code class="docutils literal notranslate"><span class="pre">시도</span></code> 열 중에서도 서울, 부산, 인천의 데이터만 사용할 것이다.</p></li>
-</ul>
+<p>두 데이터프레임의 크기가 같고 구성원이 같기 때문에 결합된 데이터프레임도 같은 수의 자료를 가진다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span><span class="p">[</span><span class="s2">&quot;연도&quot;</span><span class="p">,</span><span class="s2">&quot;시도&quot;</span><span class="p">,</span><span class="s2">&quot;산재_평균근로자수&quot;</span><span class="p">,</span><span class="s2">&quot;산재만_가입된사업장수&quot;</span><span class="p">,</span><span class="s2">&quot;산재_가입된사업장수&quot;</span><span class="p">,</span><span class="s2">&quot;고용_평균근로자수&quot;</span><span class="p">,</span> <span class="s2">&quot;고용만_가입된사업장수&quot;</span><span class="p">,</span><span class="s2">&quot;고용_가입된사업장수&quot;</span><span class="p">]</span>
-<span class="n">total_sub</span> <span class="o">=</span> <span class="n">total</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s2">&quot;연도&quot;</span><span class="p">,</span> <span class="s2">&quot;시도&quot;</span><span class="p">,</span><span class="s2">&quot;산재_가입된사업장수&quot;</span><span class="p">,</span> <span class="s2">&quot;고용_가입된사업장수&quot;</span><span class="p">]]</span>
-<span class="n">total_sub</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>연도</th>
-      <th>시도</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2010.0</td>
-      <td>광주</td>
-      <td>1820</td>
-      <td>1763</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2010.0</td>
-      <td>대구</td>
-      <td>2523</td>
-      <td>2420</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2010.0</td>
-      <td>대전</td>
-      <td>1340</td>
-      <td>1271</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2010.0</td>
-      <td>부산</td>
-      <td>3108</td>
-      <td>2979</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2010.0</td>
-      <td>서울</td>
-      <td>11741</td>
-      <td>11391</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>79</th>
-      <td>2021.0</td>
-      <td>대전</td>
-      <td>7917</td>
-      <td>8007</td>
-    </tr>
-    <tr>
-      <th>80</th>
-      <td>2021.0</td>
-      <td>부산</td>
-      <td>17367</td>
-      <td>17680</td>
-    </tr>
-    <tr>
-      <th>81</th>
-      <td>2021.0</td>
-      <td>서울</td>
-      <td>59009</td>
-      <td>58700</td>
-    </tr>
-    <tr>
-      <th>82</th>
-      <td>2021.0</td>
-      <td>울산</td>
-      <td>5095</td>
-      <td>5193</td>
-    </tr>
-    <tr>
-      <th>83</th>
-      <td>2021.0</td>
-      <td>인천</td>
-      <td>15648</td>
-      <td>15615</td>
-    </tr>
-  </tbody>
-</table>
-<p>84 rows × 4 columns</p>
-</div></div></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(18273, 11)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_sub</span> <span class="o">=</span> <span class="n">total_sub</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">total_sub</span><span class="p">[</span><span class="s2">&quot;연도&quot;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2015</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">total_sub</span><span class="p">[</span><span class="s2">&quot;연도&quot;</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">2018</span><span class="p">)]</span>
-<span class="n">total_sub</span><span class="o">=</span> <span class="n">total_sub</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">total_sub</span><span class="p">[</span><span class="s2">&quot;시도&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;서울&quot;</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">total_sub</span><span class="p">[</span><span class="s2">&quot;시도&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;부산&quot;</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">total_sub</span><span class="p">[</span><span class="s2">&quot;시도&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;인천&quot;</span><span class="p">)]</span>
-<span class="n">total_sub</span> <span class="o">=</span> <span class="n">total_sub</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">total_sub</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>연도</th>
-      <th>시도</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2015.0</td>
-      <td>부산</td>
-      <td>7423</td>
-      <td>7289</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2015.0</td>
-      <td>서울</td>
-      <td>26025</td>
-      <td>25641</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2015.0</td>
-      <td>인천</td>
-      <td>5850</td>
-      <td>5702</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2016.0</td>
-      <td>부산</td>
-      <td>8507</td>
-      <td>8275</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2016.0</td>
-      <td>서울</td>
-      <td>30761</td>
-      <td>30038</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2016.0</td>
-      <td>인천</td>
-      <td>6755</td>
-      <td>6602</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2017.0</td>
-      <td>부산</td>
-      <td>9748</td>
-      <td>9543</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2017.0</td>
-      <td>서울</td>
-      <td>34718</td>
-      <td>34114</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2017.0</td>
-      <td>인천</td>
-      <td>8013</td>
-      <td>7800</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2018.0</td>
-      <td>부산</td>
-      <td>12433</td>
-      <td>11640</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>2018.0</td>
-      <td>서울</td>
-      <td>45766</td>
-      <td>43654</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>2018.0</td>
-      <td>인천</td>
-      <td>11109</td>
-      <td>10323</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(18273, 9)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">food_sub</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">food</span><span class="p">[</span><span class="s2">&quot;연도&quot;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2017</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">food</span><span class="p">[</span><span class="s2">&quot;연도&quot;</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">2019</span><span class="p">)]</span>
-<span class="n">food_sub</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">food</span><span class="p">[</span><span class="s2">&quot;시도&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;서울&quot;</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">food</span><span class="p">[</span><span class="s2">&quot;시도&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;부산&quot;</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">food</span><span class="p">[</span><span class="s2">&quot;시도&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;인천&quot;</span><span class="p">)]</span>
-<span class="n">food_sub</span> <span class="o">=</span> <span class="n">food_sub</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">food_sub</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_m</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>시도</th>
-      <th>연도</th>
-      <th>산재_음식사업장수</th>
-      <th>고용_음식사업장수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>서울</td>
-      <td>2017.0</td>
-      <td>6069</td>
-      <td>6117</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>인천</td>
-      <td>2017.0</td>
-      <td>1319</td>
-      <td>1318</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>부산</td>
-      <td>2017.0</td>
-      <td>1713</td>
-      <td>1720</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>서울</td>
-      <td>2018.0</td>
-      <td>7967</td>
-      <td>8000</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>인천</td>
-      <td>2018.0</td>
-      <td>1817</td>
-      <td>1835</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>부산</td>
-      <td>2018.0</td>
-      <td>2159</td>
-      <td>2168</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>서울</td>
-      <td>2019.0</td>
-      <td>10576</td>
-      <td>10596</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>인천</td>
-      <td>2019.0</td>
-      <td>2718</td>
-      <td>2731</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>부산</td>
-      <td>2019.0</td>
-      <td>3205</td>
-      <td>3215</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>부산</td>
-      <td>2020.0</td>
-      <td>3508</td>
-      <td>3508</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>인천</td>
-      <td>2020.0</td>
-      <td>2886</td>
-      <td>2892</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>서울</td>
-      <td>2020.0</td>
-      <td>10612</td>
-      <td>10631</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>서울</td>
-      <td>2021.0</td>
-      <td>10752</td>
-      <td>10796</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>부산</td>
-      <td>2021.0</td>
-      <td>3829</td>
-      <td>3836</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>인천</td>
-      <td>2021.0</td>
-      <td>2891</td>
-      <td>2898</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>데이터프레임 <code class="docutils literal notranslate"><span class="pre">total_sub</span></code> 과 <code class="docutils literal notranslate"><span class="pre">food_sub</span></code> 에는 같은 이름을 가지는 열 <code class="docutils literal notranslate"><span class="pre">연도</span></code> 와 <code class="docutils literal notranslate"><span class="pre">시도</span></code>가 있다. 우리는 두 개의 데이터프레임을 전체 사업장과 음식 사업장 모두를 한 번에 볼 수 있는 새로운 데이터프레임을 만들 것이다.</p>
-<p>아래의 결과를 보면 두 개의 데이터프레임이 지정된 열 <code class="docutils literal notranslate"><span class="pre">연도</span></code>와 <code class="docutils literal notranslate"><span class="pre">시도</span></code> 에 의하여 결합되어 나타나게 된다.
-결과에서 <code class="docutils literal notranslate"><span class="pre">2015년</span></code>,<code class="docutils literal notranslate"><span class="pre">2016년</span></code>,<code class="docutils literal notranslate"><span class="pre">2019년</span></code> 의 자료가 사라져 버린 것을 확인할 수 있다.
-<code class="docutils literal notranslate"><span class="pre">how='</span></code>를 따로 설정해주지 않았기 때문에 기본값인<code class="docutils literal notranslate"><span class="pre">how='inner'</span></code>로 결과가 나타난다. 물론 <code class="docutils literal notranslate"><span class="pre">2015년</span></code>,<code class="docutils literal notranslate"><span class="pre">2016년</span></code>,<code class="docutils literal notranslate"><span class="pre">2019년</span></code> 자료가 필요없을 수도 있지만 많은 경우 자료를 유지해야 한다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">total_sub</span><span class="p">,</span> <span class="n">food_sub</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;연도&quot;</span><span class="p">,</span><span class="s2">&quot;시도&quot;</span><span class="p">])</span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(18273, 19)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>연도</th>
-      <th>시도</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
-      <th>산재_음식사업장수</th>
-      <th>고용_음식사업장수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2017.0</td>
-      <td>부산</td>
-      <td>9748</td>
-      <td>9543</td>
-      <td>1713</td>
-      <td>1720</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2017.0</td>
-      <td>서울</td>
-      <td>34718</td>
-      <td>34114</td>
-      <td>6069</td>
-      <td>6117</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2017.0</td>
-      <td>인천</td>
-      <td>8013</td>
-      <td>7800</td>
-      <td>1319</td>
-      <td>1318</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2018.0</td>
-      <td>부산</td>
-      <td>12433</td>
-      <td>11640</td>
-      <td>2159</td>
-      <td>2168</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2018.0</td>
-      <td>서울</td>
-      <td>45766</td>
-      <td>43654</td>
-      <td>7967</td>
-      <td>8000</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2018.0</td>
-      <td>인천</td>
-      <td>11109</td>
-      <td>10323</td>
-      <td>1817</td>
-      <td>1835</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">total_sub</span><span class="p">,</span> <span class="n">food_sub</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;연도&quot;</span><span class="p">,</span><span class="s2">&quot;시도&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>연도</th>
-      <th>시도</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
-      <th>산재_음식사업장수</th>
-      <th>고용_음식사업장수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2017.0</td>
-      <td>부산</td>
-      <td>9748</td>
-      <td>9543</td>
-      <td>1713</td>
-      <td>1720</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2017.0</td>
-      <td>서울</td>
-      <td>34718</td>
-      <td>34114</td>
-      <td>6069</td>
-      <td>6117</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2017.0</td>
-      <td>인천</td>
-      <td>8013</td>
-      <td>7800</td>
-      <td>1319</td>
-      <td>1318</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2018.0</td>
-      <td>부산</td>
-      <td>12433</td>
-      <td>11640</td>
-      <td>2159</td>
-      <td>2168</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2018.0</td>
-      <td>서울</td>
-      <td>45766</td>
-      <td>43654</td>
-      <td>7967</td>
-      <td>8000</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2018.0</td>
-      <td>인천</td>
-      <td>11109</td>
-      <td>10323</td>
-      <td>1817</td>
-      <td>1835</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>이제 <code class="docutils literal notranslate"><span class="pre">how</span></code> 옵션을 바꾸어 결합 시 기준이 되는 식별자에 조건을 바꾸어보자.</p>
-<p>먼저 결합시 기준이 되는 식별자가 왼쪽에 있는 데이터프레임 <code class="docutils literal notranslate"><span class="pre">total_sub</span></code> 에 있다는 것을 선택명령문 <code class="docutils literal notranslate"><span class="pre">how='left'</span></code> 로 알려주자.
-아래의 결과를 확인해보면 <code class="docutils literal notranslate"><span class="pre">2015년도</span></code> 의 자료가 나타나지만 <code class="docutils literal notranslate"><span class="pre">산재_음식사업장수</span></code>과 <code class="docutils literal notranslate"><span class="pre">고용_음식사업장수</span></code>에서 결측값(<code class="docutils literal notranslate"><span class="pre">NaN</span></code>) 으로 표시된다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">total_sub</span><span class="p">,</span> <span class="n">food_sub</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;연도&quot;</span><span class="p">,</span><span class="s2">&quot;시도&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>연도</th>
-      <th>시도</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
-      <th>산재_음식사업장수</th>
-      <th>고용_음식사업장수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2015.0</td>
-      <td>부산</td>
-      <td>7423</td>
-      <td>7289</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2015.0</td>
-      <td>서울</td>
-      <td>26025</td>
-      <td>25641</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2015.0</td>
-      <td>인천</td>
-      <td>5850</td>
-      <td>5702</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2016.0</td>
-      <td>부산</td>
-      <td>8507</td>
-      <td>8275</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2016.0</td>
-      <td>서울</td>
-      <td>30761</td>
-      <td>30038</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2016.0</td>
-      <td>인천</td>
-      <td>6755</td>
-      <td>6602</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2017.0</td>
-      <td>부산</td>
-      <td>9748</td>
-      <td>9543</td>
-      <td>1713.0</td>
-      <td>1720.0</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2017.0</td>
-      <td>서울</td>
-      <td>34718</td>
-      <td>34114</td>
-      <td>6069.0</td>
-      <td>6117.0</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2017.0</td>
-      <td>인천</td>
-      <td>8013</td>
-      <td>7800</td>
-      <td>1319.0</td>
-      <td>1318.0</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2018.0</td>
-      <td>부산</td>
-      <td>12433</td>
-      <td>11640</td>
-      <td>2159.0</td>
-      <td>2168.0</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>2018.0</td>
-      <td>서울</td>
-      <td>45766</td>
-      <td>43654</td>
-      <td>7967.0</td>
-      <td>8000.0</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>2018.0</td>
-      <td>인천</td>
-      <td>11109</td>
-      <td>10323</td>
-      <td>1817.0</td>
-      <td>1835.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>다음 결합시 기준이 되는 식별자가 오른쪽에 있는 데이터프레임 <code class="docutils literal notranslate"><span class="pre">total_sub</span></code> 에 있다는 것을 선택명령문 <code class="docutils literal notranslate"><span class="pre">how='right'</span></code> 로 알려주자.
-<code class="docutils literal notranslate"><span class="pre">2019년도</span></code> 의 자료가 나타나지만 <code class="docutils literal notranslate"><span class="pre">산재_가입된사업장수</span></code>과 <code class="docutils literal notranslate"><span class="pre">고용_가입된사업장수</span></code>에서 결측값(<code class="docutils literal notranslate"><span class="pre">NaN</span></code>) 으로 표시되는 것을 확인할 수 있다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">total_sub</span><span class="p">,</span> <span class="n">food_sub</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;연도&quot;</span><span class="p">,</span><span class="s2">&quot;시도&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>연도</th>
-      <th>시도</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
-      <th>산재_음식사업장수</th>
-      <th>고용_음식사업장수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2017.0</td>
-      <td>서울</td>
-      <td>34718.0</td>
-      <td>34114.0</td>
-      <td>6069</td>
-      <td>6117</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2017.0</td>
-      <td>인천</td>
-      <td>8013.0</td>
-      <td>7800.0</td>
-      <td>1319</td>
-      <td>1318</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2017.0</td>
-      <td>부산</td>
-      <td>9748.0</td>
-      <td>9543.0</td>
-      <td>1713</td>
-      <td>1720</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2018.0</td>
-      <td>서울</td>
-      <td>45766.0</td>
-      <td>43654.0</td>
-      <td>7967</td>
-      <td>8000</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2018.0</td>
-      <td>인천</td>
-      <td>11109.0</td>
-      <td>10323.0</td>
-      <td>1817</td>
-      <td>1835</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2018.0</td>
-      <td>부산</td>
-      <td>12433.0</td>
-      <td>11640.0</td>
-      <td>2159</td>
-      <td>2168</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2019.0</td>
-      <td>서울</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>10576</td>
-      <td>10596</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2019.0</td>
-      <td>인천</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>2718</td>
-      <td>2731</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2019.0</td>
-      <td>부산</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>3205</td>
-      <td>3215</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2020.0</td>
-      <td>부산</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>3508</td>
-      <td>3508</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>2020.0</td>
-      <td>인천</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>2886</td>
-      <td>2892</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>2020.0</td>
-      <td>서울</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>10612</td>
-      <td>10631</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>2021.0</td>
-      <td>서울</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>10752</td>
-      <td>10796</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>2021.0</td>
-      <td>부산</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>3829</td>
-      <td>3836</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>2021.0</td>
-      <td>인천</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>2891</td>
-      <td>2898</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>다음 결합시 기준이 되는 식별자가 오른쪽에 있는 데이터프레임 <code class="docutils literal notranslate"><span class="pre">total_sub</span></code> 에 있다는 것을 선택명령문 <code class="docutils literal notranslate"><span class="pre">how='outer'</span></code> 로 알려주자.
-이제<code class="docutils literal notranslate"><span class="pre">2015년도</span></code> <code class="docutils literal notranslate"><span class="pre">2019년도</span></code> 의 자료가 나타나지만 ‘ <code class="docutils literal notranslate"><span class="pre">산재_음식사업장수</span></code>과 <code class="docutils literal notranslate"><span class="pre">고용_음식사업장수</span></code>에서 <code class="docutils literal notranslate"><span class="pre">2015년도</span></code> 자료가 결측값(<code class="docutils literal notranslate"><span class="pre">NaN</span></code>) 으로 표시되고 <code class="docutils literal notranslate"><span class="pre">산재_가입된사업장수</span></code>과 <code class="docutils literal notranslate"><span class="pre">고용_가입된사업장수</span></code>에서 <code class="docutils literal notranslate"><span class="pre">2019년도</span></code> 지료가 결측값(<code class="docutils literal notranslate"><span class="pre">NaN</span></code>) 으로 표시되는 것을 확인할 수 있다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">total_sub</span><span class="p">,</span> <span class="n">food_sub</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;연도&quot;</span><span class="p">,</span><span class="s2">&quot;시도&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span> 
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>연도</th>
-      <th>시도</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
-      <th>산재_음식사업장수</th>
-      <th>고용_음식사업장수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2015.0</td>
-      <td>부산</td>
-      <td>7423.0</td>
-      <td>7289.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2015.0</td>
-      <td>서울</td>
-      <td>26025.0</td>
-      <td>25641.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2015.0</td>
-      <td>인천</td>
-      <td>5850.0</td>
-      <td>5702.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2016.0</td>
-      <td>부산</td>
-      <td>8507.0</td>
-      <td>8275.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2016.0</td>
-      <td>서울</td>
-      <td>30761.0</td>
-      <td>30038.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2016.0</td>
-      <td>인천</td>
-      <td>6755.0</td>
-      <td>6602.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2017.0</td>
-      <td>부산</td>
-      <td>9748.0</td>
-      <td>9543.0</td>
-      <td>1713.0</td>
-      <td>1720.0</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2017.0</td>
-      <td>서울</td>
-      <td>34718.0</td>
-      <td>34114.0</td>
-      <td>6069.0</td>
-      <td>6117.0</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2017.0</td>
-      <td>인천</td>
-      <td>8013.0</td>
-      <td>7800.0</td>
-      <td>1319.0</td>
-      <td>1318.0</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2018.0</td>
-      <td>부산</td>
-      <td>12433.0</td>
-      <td>11640.0</td>
-      <td>2159.0</td>
-      <td>2168.0</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>2018.0</td>
-      <td>서울</td>
-      <td>45766.0</td>
-      <td>43654.0</td>
-      <td>7967.0</td>
-      <td>8000.0</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>2018.0</td>
-      <td>인천</td>
-      <td>11109.0</td>
-      <td>10323.0</td>
-      <td>1817.0</td>
-      <td>1835.0</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>2019.0</td>
-      <td>서울</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>10576.0</td>
-      <td>10596.0</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>2019.0</td>
-      <td>인천</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>2718.0</td>
-      <td>2731.0</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>2019.0</td>
-      <td>부산</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>3205.0</td>
-      <td>3215.0</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>2020.0</td>
-      <td>부산</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>3508.0</td>
-      <td>3508.0</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>2020.0</td>
-      <td>인천</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>2886.0</td>
-      <td>2892.0</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>2020.0</td>
-      <td>서울</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>10612.0</td>
-      <td>10631.0</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>2021.0</td>
-      <td>서울</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>10752.0</td>
-      <td>10796.0</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>2021.0</td>
-      <td>부산</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>3829.0</td>
-      <td>3836.0</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>2021.0</td>
-      <td>인천</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>2891.0</td>
-      <td>2898.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
 <section id="id5">
@@ -2931,6 +1522,20 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="dataframe_group.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2.3. </span>데이터 그룹화</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../day3/day_intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>두 변수의 관계</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>

@@ -52,6 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.3. 데이터 그룹화" href="dataframe_group.html" />
     <link rel="prev" title="2.1. 데이터프레임의 정의" href="dataframe_introduction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -143,6 +144,33 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      2.2. 데이터프레임의 요약
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dataframe_group.html">
+     2.3. 데이터 그룹화
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dataframe_merge.html">
+     2.4. 데이터프레임의 결합
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../day3/day_intro.html">
+   3. 두 변수의 관계
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../day3/correlation.html">
+     3.1. 두 변수의 관계
     </a>
    </li>
   </ul>
@@ -359,8 +387,15 @@ title="Print to PDF"
      해당 시도 통계
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   새로운 정보
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+    <a class="reference internal nav-link" href="#id7">
      데이터 내보내기
     </a>
    </li>
@@ -405,8 +440,15 @@ title="Print to PDF"
      해당 시도 통계
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   새로운 정보
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+    <a class="reference internal nav-link" href="#id7">
      데이터 내보내기
     </a>
    </li>
@@ -740,7 +782,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">describe</span></code> method를 이용해서 기초통계량들을 확인할 수 있습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">describe</span></code> 메소드(method)를 이용해서 기초통계량들을 확인할 수 있습니다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">food_sum</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -990,8 +1032,8 @@ title="Print to PDF"
 </div></div></div>
 </div>
 <p>2017년 중에 산재 보험을 가입한 음식 사업장 수를 많은 지역구대로 정렬 해보려 합니다.</p>
-<p>정렬하기 위해선 <code class="docutils literal notranslate"><span class="pre">sort_values</span></code> method 를 씁니다.
-()괄호 안에는 해당 열을 지정하고, 뒤에는 따로 원하는 옵션을 넣습니다.</p>
+<p>정렬하기 위해선 <code class="docutils literal notranslate"><span class="pre">sort_values</span></code> method 를 사용합니다.
+()괄호 안에는 해당 열을 지정하고(<code class="docutils literal notranslate"><span class="pre">by=&quot;산재_음식사업장수&quot;</span></code>) 뒤에는 내림차순으로 정렬하는 옵션 <code class="docutils literal notranslate"><span class="pre">ascending=False</span></code>을 넣습니다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">food_2017</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;산재_음식사업장수&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1077,7 +1119,10 @@ title="Print to PDF"
 </table>
 </div></div></div>
 </div>
-<p>반대로 출동 횟수가 적은 대로 정렬 해보려면 ascending부분을 지우면 됩니다.</p>
+<p>반대로 정렬할려면, 즉 오름차순로 정렬 해보려면 <code class="docutils literal notranslate"><span class="pre">ascending</span></code> 에 대한 옵션을 지우거나 <code class="docutils literal notranslate"><span class="pre">ascending=True</span></code>로 지정하면 됩니다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sort_values</span></code> 메소드는 <code class="docutils literal notranslate"><span class="pre">ascending=True</span></code> 가 기본적으로 정해진 옵션입니다.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">food_2017</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;산재_음식사업장수&quot;</span><span class="p">)</span>
@@ -1163,7 +1208,7 @@ title="Print to PDF"
 </table>
 </div></div></div>
 </div>
-<p>문자열 데이터인 “시도” 를 가지고 정렬해보겠습니다.</p>
+<p>문자열 데이터인 `시도`` 를 가지고 정렬해보겠습니다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">food_2017</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;시도&quot;</span><span class="p">)</span>
@@ -1249,11 +1294,96 @@ title="Print to PDF"
 </table>
 </div></div></div>
 </div>
-<p>“시도” 란을 보시면 가나다 순으로 정렬되는 것을 확인할 수 있습니다. 반대로 정렬하기 위해서는 ascending 함수를 사용해서 정렬할 수 있습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">시도</span></code> 열을 보면 가나다 순으로 정렬되는 것을 확인할 수 있습니다. 반대로 내림차순으로 정렬하기 위해서는 <code class="docutils literal notranslate"><span class="pre">ascending</span></code> 선택문을 사용해서 정렬할 수 있습니다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">food_2017</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;시도&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>시도</th>
+      <th>연도</th>
+      <th>산재_음식사업장수</th>
+      <th>고용_음식사업장수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>30</th>
+      <td>인천</td>
+      <td>2017.0</td>
+      <td>1319</td>
+      <td>1318</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>울산</td>
+      <td>2017.0</td>
+      <td>541</td>
+      <td>541</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>서울</td>
+      <td>2017.0</td>
+      <td>6069</td>
+      <td>6117</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>부산</td>
+      <td>2017.0</td>
+      <td>1713</td>
+      <td>1720</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>대전</td>
+      <td>2017.0</td>
+      <td>933</td>
+      <td>927</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>대구</td>
+      <td>2017.0</td>
+      <td>1367</td>
+      <td>1375</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>광주</td>
+      <td>2017.0</td>
+      <td>796</td>
+      <td>801</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 </section>
 <section id="id5">
 <h3>해당 시도 통계<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
-<p>이번에는 부산만 출력하겠습니다.</p>
+<p>이번에는 부산에 해당하는 자료만 선택합니다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">food_busan</span> <span class="o">=</span> <span class="n">food_dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">food_dat</span><span class="p">[</span><span class="s2">&quot;시도&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;부산&quot;</span><span class="p">]</span>
@@ -1469,8 +1599,542 @@ title="Print to PDF"
 </div></div></div>
 </div>
 </section>
+</section>
 <section id="id6">
-<h3>데이터 내보내기<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<h2>새로운 정보<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
+<p>이제 데이터프레임의 열들의 정보를 이용하여 새로운 정보를 가진 열을 생성하는 방법을 알아봅시다.</p>
+<p>먼저 가계금융복지조사 자료를 불러옵니다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_fin</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://uos-bigdata.github.io/lab_data/docs/assets/data_lab_depart/2016_housemasterdata_part1.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;cp949&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df_fin</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>조사연도</th>
+      <th>가구고유번호</th>
+      <th>수도권여부</th>
+      <th>가구주_성별코드</th>
+      <th>가구원수</th>
+      <th>노인가구코드</th>
+      <th>조손가구코드</th>
+      <th>한부모가구코드</th>
+      <th>다문화가구코드</th>
+      <th>장애인가구코드</th>
+      <th>...</th>
+      <th>혼인상태코드</th>
+      <th>입주형태통합코드</th>
+      <th>전용면적규모코드</th>
+      <th>주택종류통합코드</th>
+      <th>부채보유여부</th>
+      <th>자산금액</th>
+      <th>부채금액</th>
+      <th>근로소득</th>
+      <th>사업소득</th>
+      <th>재산소득</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2016</td>
+      <td>10200111</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>연립 및 다세대</td>
+      <td>부채 보유</td>
+      <td>76202</td>
+      <td>22200</td>
+      <td>4000</td>
+      <td>5000</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2016</td>
+      <td>10200121</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>미혼</td>
+      <td>자기집</td>
+      <td>132.2㎡ 이상</td>
+      <td>단독주택</td>
+      <td>부채 보유</td>
+      <td>116466</td>
+      <td>45000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2016</td>
+      <td>10200151</td>
+      <td>수도권</td>
+      <td>여자</td>
+      <td>3</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>86.0㎡ ~ 132.2㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>125360</td>
+      <td>8000</td>
+      <td>12600</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2016</td>
+      <td>10200161</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>5</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>79406</td>
+      <td>25500</td>
+      <td>0</td>
+      <td>4200</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2016</td>
+      <td>10200171</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>2</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>45600</td>
+      <td>27800</td>
+      <td>12420</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 26 columns</p>
+</div></div></div>
+</div>
+<p>가계금융복지조사 자료에서 3 개의 소득, 즉  <code class="docutils literal notranslate"><span class="pre">근로소득</span></code>, <code class="docutils literal notranslate"><span class="pre">사업소득</span></code>, <code class="docutils literal notranslate"><span class="pre">재산소득</span></code> 을 모두 합친 금액을 <code class="docutils literal notranslate"><span class="pre">총소득</span></code> 이라는 이름을 가진 새로운 얄을 만들려고 합니다.</p>
+<p>여 열을 더하면 전체 값이 나온다. 전체 값을 새로운 변수 <code class="docutils literal notranslate"><span class="pre">total</span></code> 로 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df_year</span></code>에 추가하자.</p>
+<p>사용한 메소드 <code class="docutils literal notranslate"><span class="pre">sum(axis=1)</span></code> 는 데이터프레임의 모든 열 들을 더해주는 작업을 수행한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_fin</span><span class="p">[</span><span class="s2">&quot;총소득&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_fin</span><span class="p">[[</span><span class="s1">&#39;근로소득&#39;</span><span class="p">,</span> <span class="s1">&#39;사업소득&#39;</span><span class="p">,</span> <span class="s1">&#39;재산소득&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_fin</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>조사연도</th>
+      <th>가구고유번호</th>
+      <th>수도권여부</th>
+      <th>가구주_성별코드</th>
+      <th>가구원수</th>
+      <th>노인가구코드</th>
+      <th>조손가구코드</th>
+      <th>한부모가구코드</th>
+      <th>다문화가구코드</th>
+      <th>장애인가구코드</th>
+      <th>...</th>
+      <th>입주형태통합코드</th>
+      <th>전용면적규모코드</th>
+      <th>주택종류통합코드</th>
+      <th>부채보유여부</th>
+      <th>자산금액</th>
+      <th>부채금액</th>
+      <th>근로소득</th>
+      <th>사업소득</th>
+      <th>재산소득</th>
+      <th>총소득</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2016</td>
+      <td>10200111</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>자기집</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>연립 및 다세대</td>
+      <td>부채 보유</td>
+      <td>76202</td>
+      <td>22200</td>
+      <td>4000</td>
+      <td>5000</td>
+      <td>0</td>
+      <td>9000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2016</td>
+      <td>10200121</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>자기집</td>
+      <td>132.2㎡ 이상</td>
+      <td>단독주택</td>
+      <td>부채 보유</td>
+      <td>116466</td>
+      <td>45000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2016</td>
+      <td>10200151</td>
+      <td>수도권</td>
+      <td>여자</td>
+      <td>3</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>자기집</td>
+      <td>86.0㎡ ~ 132.2㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>125360</td>
+      <td>8000</td>
+      <td>12600</td>
+      <td>0</td>
+      <td>0</td>
+      <td>12600</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2016</td>
+      <td>10200161</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>5</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>자기집</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>79406</td>
+      <td>25500</td>
+      <td>0</td>
+      <td>4200</td>
+      <td>0</td>
+      <td>4200</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2016</td>
+      <td>10200171</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>2</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>자기집</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>45600</td>
+      <td>27800</td>
+      <td>12420</td>
+      <td>0</td>
+      <td>0</td>
+      <td>12420</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 27 columns</p>
+</div></div></div>
+</div>
+<p>이번에는 총소득에서 근로소득이 차지하는 비율을 백분율(percentage)단위로 만들어 열이름 <code class="docutils literal notranslate"><span class="pre">근로소득비율</span></code> 로 저장해 보자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_fin</span><span class="p">[</span><span class="s1">&#39;근로소득비율&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_fin</span><span class="p">[</span><span class="s1">&#39;근로소득&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_fin</span><span class="p">[</span><span class="s1">&#39;총소득&#39;</span><span class="p">]</span> <span class="o">*</span><span class="mi">100</span>
+<span class="n">df_fin</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>조사연도</th>
+      <th>가구고유번호</th>
+      <th>수도권여부</th>
+      <th>가구주_성별코드</th>
+      <th>가구원수</th>
+      <th>노인가구코드</th>
+      <th>조손가구코드</th>
+      <th>한부모가구코드</th>
+      <th>다문화가구코드</th>
+      <th>장애인가구코드</th>
+      <th>...</th>
+      <th>전용면적규모코드</th>
+      <th>주택종류통합코드</th>
+      <th>부채보유여부</th>
+      <th>자산금액</th>
+      <th>부채금액</th>
+      <th>근로소득</th>
+      <th>사업소득</th>
+      <th>재산소득</th>
+      <th>총소득</th>
+      <th>근로소득비율</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2016</td>
+      <td>10200111</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>연립 및 다세대</td>
+      <td>부채 보유</td>
+      <td>76202</td>
+      <td>22200</td>
+      <td>4000</td>
+      <td>5000</td>
+      <td>0</td>
+      <td>9000</td>
+      <td>44.444444</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2016</td>
+      <td>10200121</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>132.2㎡ 이상</td>
+      <td>단독주택</td>
+      <td>부채 보유</td>
+      <td>116466</td>
+      <td>45000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3000</td>
+      <td>100.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2016</td>
+      <td>10200151</td>
+      <td>수도권</td>
+      <td>여자</td>
+      <td>3</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>86.0㎡ ~ 132.2㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>125360</td>
+      <td>8000</td>
+      <td>12600</td>
+      <td>0</td>
+      <td>0</td>
+      <td>12600</td>
+      <td>100.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2016</td>
+      <td>10200161</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>5</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>79406</td>
+      <td>25500</td>
+      <td>0</td>
+      <td>4200</td>
+      <td>0</td>
+      <td>4200</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2016</td>
+      <td>10200171</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>2</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>45600</td>
+      <td>27800</td>
+      <td>12420</td>
+      <td>0</td>
+      <td>0</td>
+      <td>12420</td>
+      <td>100.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 28 columns</p>
+</div></div></div>
+</div>
+<section id="id7">
+<h3>데이터 내보내기<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
 <p>처음에 만든 2017년 요약데이터를 csv 내보내려면 to_csv를 입력하고 괄호() 안에는 저장링크를 넣고 마지막 부분에는 저장할 파일 이름을 지정하면 됩니다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1714,6 +2378,13 @@ title="Print to PDF"
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title"><span class="section-number">2.1. </span>데이터프레임의 정의</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="dataframe_group.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2.3. </span>데이터 그룹화</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

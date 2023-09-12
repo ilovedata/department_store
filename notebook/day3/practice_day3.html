@@ -144,6 +144,33 @@ const thebe_selector_output = ".output, .cell_output"
      2.2. 데이터프레임의 요약
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../day2/dataframe_group.html">
+     2.3. 데이터 그룹화
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../day2/dataframe_merge.html">
+     2.4. 데이터프레임의 결합
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="day_intro.html">
+   3. 두 변수의 관계
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="correlation.html">
+     3.1. 두 변수의 관계
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -423,7 +450,8 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>고용산재보험 가입 현황 적용<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
-<p>2일차에서 <code class="docutils literal notranslate"><span class="pre">pandas</span></code>패키지의 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>구조의 데이터에 대해 <code class="docutils literal notranslate"><span class="pre">merge</span></code> 및 <code class="docutils literal notranslate"><span class="pre">group</span></code>함수를 이용하여 데이터를 조작하는 법을 배웠다. 이때, 실제 데이터가 아닌 완성된 데이터의 일부를 이용하여 진행했다. 이번 시간에는 raw data(아무것도 하지 않은 데이터)를 이용하여 원하는 결과를 확인하는 과정을 가지고자 한다.</p>
+<p>2일차에서 <code class="docutils literal notranslate"><span class="pre">pandas</span></code>패키지의 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>구조의 데이터에 대해 <code class="docutils literal notranslate"><span class="pre">merge</span></code> 및 <code class="docutils literal notranslate"><span class="pre">group</span></code>함수를 이용하여 데이터를 조작하는 법을 배웠다.</p>
+<p>이번 시간에는 raw data(아무것도 하지 않은 데이터)를 이용하여 원하는 결과를 확인하는 과정을 가지고자 한다.</p>
 <p>이번 시간의 목표는 2일차 때 사용한 데이터를 고용산재보험 가입 현황데이터를 이용하여 생성하는 것이다. 목표는 다음과 같다.</p>
 <p>2022년 제외하고,</p>
 <ol class="simple">
@@ -690,7 +718,7 @@ memory usage: 130.2+ MB
       <td>1</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010366494.0</td>
+      <td>1.01037e+09</td>
       <td>광주</td>
     </tr>
     <tr>
@@ -708,7 +736,7 @@ memory usage: 130.2+ MB
       <td>2</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010614643.0</td>
+      <td>1.01061e+09</td>
       <td>광주</td>
     </tr>
     <tr>
@@ -726,7 +754,7 @@ memory usage: 130.2+ MB
       <td>1</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010711172.0</td>
+      <td>1.01071e+09</td>
       <td>광주</td>
     </tr>
     <tr>
@@ -744,7 +772,7 @@ memory usage: 130.2+ MB
       <td>2</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010715412.0</td>
+      <td>1.01072e+09</td>
       <td>광주</td>
     </tr>
     <tr>
@@ -762,7 +790,7 @@ memory usage: 130.2+ MB
       <td>1</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010887591.0</td>
+      <td>1.01089e+09</td>
       <td>광주</td>
     </tr>
   </tbody>
@@ -889,7 +917,7 @@ memory usage: 130.2+ MB
       <td>1</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010366494.0</td>
+      <td>1.01037e+09</td>
       <td>광주</td>
       <td>2014.0</td>
     </tr>
@@ -908,7 +936,7 @@ memory usage: 130.2+ MB
       <td>2</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010614643.0</td>
+      <td>1.01061e+09</td>
       <td>광주</td>
       <td>2013.0</td>
     </tr>
@@ -927,7 +955,7 @@ memory usage: 130.2+ MB
       <td>1</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010711172.0</td>
+      <td>1.01071e+09</td>
       <td>광주</td>
       <td>2020.0</td>
     </tr>
@@ -946,7 +974,7 @@ memory usage: 130.2+ MB
       <td>2</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010715412.0</td>
+      <td>1.01072e+09</td>
       <td>광주</td>
       <td>2012.0</td>
     </tr>
@@ -965,7 +993,7 @@ memory usage: 130.2+ MB
       <td>1</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010887591.0</td>
+      <td>1.01089e+09</td>
       <td>광주</td>
       <td>2010.0</td>
     </tr>
@@ -1091,7 +1119,7 @@ memory usage: 146.5+ MB
       <td>1</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010366494.0</td>
+      <td>1.01037e+09</td>
       <td>광주</td>
       <td>2014.0</td>
       <td>2014.0</td>
@@ -1113,7 +1141,7 @@ memory usage: 146.5+ MB
       <td>2</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010614643.0</td>
+      <td>1.01061e+09</td>
       <td>광주</td>
       <td>2013.0</td>
       <td>2013.0</td>
@@ -1135,7 +1163,7 @@ memory usage: 146.5+ MB
       <td>1</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010711172.0</td>
+      <td>1.01071e+09</td>
       <td>광주</td>
       <td>2020.0</td>
       <td>2020.0</td>
@@ -1157,7 +1185,7 @@ memory usage: 146.5+ MB
       <td>2</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010715412.0</td>
+      <td>1.01072e+09</td>
       <td>광주</td>
       <td>2012.0</td>
       <td>2012.0</td>
@@ -1179,7 +1207,7 @@ memory usage: 146.5+ MB
       <td>1</td>
       <td>계속</td>
       <td>계속</td>
-      <td>1010887591.0</td>
+      <td>1.01089e+09</td>
       <td>광주</td>
       <td>2010.0</td>
       <td>2010.0</td>
@@ -1198,9 +1226,80 @@ memory usage: 146.5+ MB
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">san_dat</span> <span class="o">=</span> <span class="n">tmp_dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;산재_year&quot;</span><span class="p">,</span> <span class="s2">&quot;시도&quot;</span><span class="p">,</span> <span class="s2">&quot;산재보험상시근로자수&quot;</span><span class="p">,</span> <span class="s2">&quot;고용_bool&quot;</span><span class="p">]]</span>
 <span class="n">san_dat</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">san_dat</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>산재_year</th>
+      <th>시도</th>
+      <th>산재보험상시근로자수</th>
+      <th>고용_bool</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2014.0</td>
+      <td>광주</td>
+      <td>1</td>
+      <td>False</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013.0</td>
+      <td>광주</td>
+      <td>2</td>
+      <td>False</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020.0</td>
+      <td>광주</td>
+      <td>1</td>
+      <td>False</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012.0</td>
+      <td>광주</td>
+      <td>2</td>
+      <td>False</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2010.0</td>
+      <td>광주</td>
+      <td>1</td>
+      <td>False</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>다음으로, <code class="docutils literal notranslate"><span class="pre">groupby</span></code> method와 <code class="docutils literal notranslate"><span class="pre">agg</span></code> method를 이용하여 산재보험상시근로자수는 <code class="docutils literal notranslate"><span class="pre">mean</span></code>함수, count는 <code class="docutils literal notranslate"><span class="pre">sum</span></code>함수를 계산한다.</p>
 <div class="cell docutils container">

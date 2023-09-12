@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>데이터 그룹화 &#8212; 파이썬 프로그래밍의 기초와 데이터 활용 방법</title>
+    <title>2.3. 데이터 그룹화 &#8212; 파이썬 프로그래밍의 기초와 데이터 활용 방법</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,6 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.4. 데이터프레임의 결합" href="dataframe_merge.html" />
+    <link rel="prev" title="2.2. 데이터프레임의 요약" href="dataframe_summary.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -106,7 +108,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../day1/intro-python.html">
    1. 파이썬 소개
@@ -124,16 +126,16 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="dataframe.html">
    2. 데이터프레임
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="dataframe_introduction.html">
      2.1. 데이터프레임의 정의
@@ -142,6 +144,33 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="dataframe_summary.html">
      2.2. 데이터프레임의 요약
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.3. 데이터 그룹화
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dataframe_merge.html">
+     2.4. 데이터프레임의 결합
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../day3/day_intro.html">
+   3. 두 변수의 관계
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../day3/correlation.html">
+     3.1. 두 변수의 관계
     </a>
    </li>
   </ul>
@@ -345,17 +374,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id3">
-   새로운 정보
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
    여러 개의 그룹
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   요약
   </a>
  </li>
 </ul>
@@ -384,17 +403,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id3">
-   새로운 정보
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
    여러 개의 그룹
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   요약
   </a>
  </li>
 </ul>
@@ -408,10 +417,10 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>데이터 그룹화<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
-<p>앞 서 <strong>데이터프레임의 요약</strong>에서는 전체 데이터를 요약 (count, mean, 분위수 등)했었다. 예를 들어, 2020년의 부산 데이터를 요약하려면 전체 데이터에서 해당 데이터를 추출하여 사용했다. 이 절에서는 그룹별로 한번에 요약하는 방법에 대해 알아보고자 한다.</p>
+<h1><span class="section-number">2.3. </span>데이터 그룹화<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>앞 서 <strong>데이터프레임의 요약</strong>에서는 전체 데이터를 요약 (count, mean, 분위수 등)했었다. 예를 들어, 가계금융복지조사 데이터에서 가구주가 남자인 자료를 요약하려면 전체 데이터에서 가구주가 남자인 데이터를 추출하여 요약할 수 있다. 이 절에서는 주어진 범주를 이용하여 그룹별로 한번에 요약하는 방법에 대해 알아보고자 한다.</p>
 <p>데이터프레임을 그룹으로 나눌 때 여러 개의 기준을 조합해서 나눌 수도 있다.</p>
-<p>앞서 사용했던 고용, 산재 데이터를 불러오자.</p>
+<p>앞서 사용했던 가계금융복지조사 데이터를 불러오자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -421,8 +430,8 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://uos-bigdata.github.io/lab_data/docs/assets/data_lab_bokji/dat_total.csv&quot;</span><span class="p">)</span>
-<span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://uos-bigdata.github.io/lab_data/docs/assets/data_lab_depart/2016_housemasterdata_part1.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;cp949&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df0</span>
 </pre></div>
 </div>
 </div>
@@ -445,71 +454,149 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>연도</th>
-      <th>시도</th>
-      <th>산재_평균근로자수</th>
-      <th>산재만_가입된사업장수</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_평균근로자수</th>
-      <th>고용만_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
+      <th>조사연도</th>
+      <th>가구고유번호</th>
+      <th>수도권여부</th>
+      <th>가구주_성별코드</th>
+      <th>가구원수</th>
+      <th>노인가구코드</th>
+      <th>조손가구코드</th>
+      <th>한부모가구코드</th>
+      <th>다문화가구코드</th>
+      <th>장애인가구코드</th>
+      <th>...</th>
+      <th>혼인상태코드</th>
+      <th>입주형태통합코드</th>
+      <th>전용면적규모코드</th>
+      <th>주택종류통합코드</th>
+      <th>부채보유여부</th>
+      <th>자산금액</th>
+      <th>부채금액</th>
+      <th>근로소득</th>
+      <th>사업소득</th>
+      <th>재산소득</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>2010.0</td>
-      <td>광주</td>
-      <td>6.863187</td>
-      <td>52</td>
-      <td>1820</td>
-      <td>6.847419</td>
-      <td>1</td>
-      <td>1763</td>
+      <td>2016</td>
+      <td>10200111</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>연립 및 다세대</td>
+      <td>부채 보유</td>
+      <td>76202</td>
+      <td>22200</td>
+      <td>4000</td>
+      <td>5000</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2010.0</td>
-      <td>대구</td>
-      <td>7.366627</td>
-      <td>82</td>
-      <td>2523</td>
-      <td>7.051240</td>
-      <td>7</td>
-      <td>2420</td>
+      <td>2016</td>
+      <td>10200121</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>미혼</td>
+      <td>자기집</td>
+      <td>132.2㎡ 이상</td>
+      <td>단독주택</td>
+      <td>부채 보유</td>
+      <td>116466</td>
+      <td>45000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2010.0</td>
-      <td>대전</td>
-      <td>9.100746</td>
-      <td>59</td>
-      <td>1340</td>
-      <td>8.816680</td>
+      <td>2016</td>
+      <td>10200151</td>
+      <td>수도권</td>
+      <td>여자</td>
       <td>3</td>
-      <td>1271</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>86.0㎡ ~ 132.2㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>125360</td>
+      <td>8000</td>
+      <td>12600</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2010.0</td>
-      <td>부산</td>
-      <td>8.126126</td>
-      <td>121</td>
-      <td>3108</td>
-      <td>7.622692</td>
-      <td>11</td>
-      <td>2979</td>
+      <td>2016</td>
+      <td>10200161</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>5</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>79406</td>
+      <td>25500</td>
+      <td>0</td>
+      <td>4200</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2010.0</td>
-      <td>서울</td>
-      <td>10.971553</td>
-      <td>343</td>
-      <td>11741</td>
-      <td>10.869985</td>
-      <td>30</td>
-      <td>11391</td>
+      <td>2016</td>
+      <td>10200171</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>2</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>45600</td>
+      <td>27800</td>
+      <td>12420</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>...</th>
@@ -521,103 +608,181 @@ title="Print to PDF"
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>79</th>
-      <td>2021.0</td>
-      <td>대전</td>
-      <td>2.658709</td>
-      <td>434</td>
-      <td>7917</td>
-      <td>1.887973</td>
-      <td>369</td>
-      <td>8007</td>
+      <th>18268</th>
+      <td>2016</td>
+      <td>994200361</td>
+      <td>비수도권</td>
+      <td>여자</td>
+      <td>2</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>49.6㎡ 미만</td>
+      <td>연립 및 다세대</td>
+      <td>부채 미보유</td>
+      <td>19213</td>
+      <td>0</td>
+      <td>888</td>
+      <td>100</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>80</th>
-      <td>2021.0</td>
-      <td>부산</td>
-      <td>2.874647</td>
-      <td>688</td>
-      <td>17367</td>
-      <td>1.909389</td>
-      <td>660</td>
-      <td>17680</td>
+      <th>18269</th>
+      <td>2016</td>
+      <td>994200381</td>
+      <td>비수도권</td>
+      <td>여자</td>
+      <td>1</td>
+      <td>노인가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>사별</td>
+      <td>기타</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>단독주택</td>
+      <td>부채 미보유</td>
+      <td>2200</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
     </tr>
     <tr>
-      <th>81</th>
-      <td>2021.0</td>
-      <td>서울</td>
-      <td>7.487265</td>
-      <td>2375</td>
-      <td>59009</td>
-      <td>2.020801</td>
-      <td>1410</td>
-      <td>58700</td>
+      <th>18270</th>
+      <td>2016</td>
+      <td>994505311</td>
+      <td>비수도권</td>
+      <td>남자</td>
+      <td>5</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>단독주택</td>
+      <td>부채 미보유</td>
+      <td>15300</td>
+      <td>0</td>
+      <td>4500</td>
+      <td>0</td>
+      <td>40</td>
     </tr>
     <tr>
-      <th>82</th>
-      <td>2021.0</td>
-      <td>울산</td>
-      <td>3.442591</td>
-      <td>273</td>
-      <td>5095</td>
-      <td>2.080108</td>
-      <td>262</td>
-      <td>5193</td>
+      <th>18271</th>
+      <td>2016</td>
+      <td>994505321</td>
+      <td>비수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>기타</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>단독주택</td>
+      <td>부채 미보유</td>
+      <td>200</td>
+      <td>0</td>
+      <td>2160</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>83</th>
-      <td>2021.0</td>
-      <td>인천</td>
-      <td>2.604997</td>
-      <td>703</td>
-      <td>15648</td>
-      <td>1.916362</td>
-      <td>444</td>
-      <td>15615</td>
+      <th>18272</th>
+      <td>2016</td>
+      <td>995200351</td>
+      <td>비수도권</td>
+      <td>남자</td>
+      <td>1</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>이혼</td>
+      <td>월세</td>
+      <td>49.6㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>860</td>
+      <td>150</td>
+      <td>1200</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
-<p>84 rows × 8 columns</p>
+<p>18273 rows × 26 columns</p>
 </div></div></div>
 </div>
-<p>먼저 연도별 부산, 울산, 대구의 고용보험 가입된 사업장 수를 계산해 보자.</p>
-<p>연도별 고용보험 가입된 사업장 수를 계산하려면</p>
+<p>먼저 가구주의 성별, 즉 남여별로 가구 구성원의 총합과 근로소득의 총합계 금액을 계산해 보자.</p>
+<p>가주주 성별로 사업소득의 평균을 계산하려면</p>
 <ol class="simple">
-<li><p>전체 자료를 연도별로 나누고</p></li>
-<li><p>각 연도에서 모든 시구의 고용보험 가입된 사업장 수를 더해야한다.</p></li>
+<li><p>전체 자료를 성별로 나누고</p></li>
+<li><p>각 성별로 가구 구성원과 근로소득를 더해야한다.</p></li>
 </ol>
-<p>즉, 데이터프레임을 지정된 열(연도)의 값(2010, 2021, ..)에 따라서 그룹으로 나누어 전체 사업장을 계산해야 한다.</p>
+<p>즉, 데이터프레임을 지정된 열(<code class="docutils literal notranslate"><span class="pre">가구주_성별코드</span></code>)의 값(<code class="docutils literal notranslate"><span class="pre">남자</span></code>, <code class="docutils literal notranslate"><span class="pre">여자</span></code>)에 따라서 그룹으로 나누어 가구 구성원과 근로소득의 합을 계산해야 한다.</p>
 <p>메소드 <code class="docutils literal notranslate"><span class="pre">groupby(</span> <span class="pre">by=...)</span></code>는  지정된 열의 값으로 데이터프레임을 그룹(group)으로 나누어 준다. 메소드 <code class="docutils literal notranslate"><span class="pre">groupby(</span> <span class="pre">by=...)</span></code>는  <strong>데이터프레임을  물리적으로 그룹을 나누어 주는 것은 아니고 메소드에서 지정된 그룹을 데이터프레임에 적용하는 기능을 한다.</strong></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">by=</span></code> 는 그룹을 나눌 때 사용되는 열을 리스트 형식으로 지정한다.</p></li>
 <li><p>메소드 <code class="docutils literal notranslate"><span class="pre">groupby(</span> <span class="pre">by=...)</span></code> 로 만들어진 데이터프레임의 자료 형식은 <code class="docutils literal notranslate"><span class="pre">DataFrameGroupBy</span></code>이다. 따라서 보통 데이터프레임에 적용되는 메소드들을 사용할 수 없는 경우가 있다.</p></li>
 </ul>
-<p>이제 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df</span></code> 를 연도 <code class="docutils literal notranslate"><span class="pre">고용_가입된사업장수</span></code>를 이용하여 그룹화된 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df_cpn</span></code>을 만들어 보자.</p>
+<p>이제 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df</span></code> 를 연도 <code class="docutils literal notranslate"><span class="pre">가구주_성별코드</span></code>를 이용하여 그룹화된 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df_group</span></code>을 만들어 보자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_com</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span> <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;연도&quot;</span><span class="p">]</span> <span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_group</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span> <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;가구주_성별코드&quot;</span><span class="p">]</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>그룹화된 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df_cpn</span></code> 은 보통 데이터프레임과 다르게 출력해주는 내용이 없다. 그 이유는 그룹화된 데이터프레임은 그룹에 대한 정보만 가진 특별한 자료의 형식을 가진다.</p>
+<p>그룹화된 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df_cgroup</span></code> 은 보통 데이터프레임과 다르게 출력해주는 내용이 없다. 그 이유는 그룹화된 데이터프레임은 그룹에 대한 정보만 가진 특별한 자료의 형식을 가진다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_com</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_group</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x000001EF31AD30A0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x10850e190&gt;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df_com</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df_group</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -630,21 +795,17 @@ title="Print to PDF"
 <section id="id2">
 <h2>그룹별 요약<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <p>이제 아래의 코드가 어떤 결과를 내는지 보자.</p>
-<p>결과는 그룹으로 지정된 연도별로 모든 산재보험, 고용보험의 음식 사업장 수를 더해서 연도별 음식 사업장 수를 계산해준다.</p>
+<p>결과는 그룹으로 지정된 가구주의 성별로  각 그룹의 모든 가구 구성원과 근로소득를 더해서 성별 가구 구성원과 근로소득의 총합을 계산해준다.</p>
 <ul class="simple">
-<li><p>주의할 점은 메소드 <code class="docutils literal notranslate"><span class="pre">sum()</span></code> 에 <code class="docutils literal notranslate"><span class="pre">axis=</span></code> 선택문이 없다. 그 이유는 그룹화된 데이터프레임의 <code class="docutils literal notranslate"><span class="pre">sum()</span></code> 메소드는 언제나 그룹에 속한 모든 자료를 더해준다.</p></li>
+<li><p>메소드 <code class="docutils literal notranslate"><span class="pre">sum()</span></code> 는  그룹화된 데이터프레임에서 그룹에 속한 모든 자료를 더해준다.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_com</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_group</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\jieun\AppData\Local\Temp\ipykernel_59076\2213740449.py:1: FutureWarning: The default value of numeric_only in DataFrameGroupBy.sum is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
-  df_com.sum()
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -663,15 +824,21 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>산재_평균근로자수</th>
-      <th>산재만_가입된사업장수</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_평균근로자수</th>
-      <th>고용만_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
+      <th>조사연도</th>
+      <th>가구고유번호</th>
+      <th>가구원수</th>
+      <th>만연령</th>
+      <th>자산금액</th>
+      <th>부채금액</th>
+      <th>근로소득</th>
+      <th>사업소득</th>
+      <th>재산소득</th>
     </tr>
     <tr>
-      <th>연도</th>
+      <th>가구주_성별코드</th>
+      <th></th>
+      <th></th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -682,112 +849,79 @@ title="Print to PDF"
   </thead>
   <tbody>
     <tr>
-      <th>2010.0</th>
-      <td>58.287574</td>
-      <td>783</td>
-      <td>23943</td>
-      <td>56.292972</td>
-      <td>58</td>
-      <td>23077</td>
+      <th>남자</th>
+      <td>27996192</td>
+      <td>6765007143007</td>
+      <td>42754</td>
+      <td>735872</td>
+      <td>584996336</td>
+      <td>103494340</td>
+      <td>48411503</td>
+      <td>18327356</td>
+      <td>3946501</td>
     </tr>
     <tr>
-      <th>2011.0</th>
-      <td>59.151566</td>
-      <td>844</td>
-      <td>27919</td>
-      <td>57.321363</td>
-      <td>80</td>
-      <td>27129</td>
+      <th>여자</th>
+      <td>8842176</td>
+      <td>2105583534116</td>
+      <td>8118</td>
+      <td>260328</td>
+      <td>77381988</td>
+      <td>12220015</td>
+      <td>6097083</td>
+      <td>1955531</td>
+      <td>457507</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>위의 코드는 모든 연속형 변수에 대한 그룹별 총합을 구해준다.</p>
+<p>아레와 같이 필요한 열만 먼저 선택해서 그룹별 총합을 구할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_group</span><span class="p">[[</span><span class="s1">&#39;가구원수&#39;</span><span class="p">,</span><span class="s1">&#39;근로소득&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>가구원수</th>
+      <th>근로소득</th>
     </tr>
     <tr>
-      <th>2012.0</th>
-      <td>52.286663</td>
-      <td>972</td>
-      <td>35896</td>
-      <td>48.572728</td>
-      <td>82</td>
-      <td>34950</td>
+      <th>가구주_성별코드</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>남자</th>
+      <td>42754</td>
+      <td>48411503</td>
     </tr>
     <tr>
-      <th>2013.0</th>
-      <td>44.299320</td>
-      <td>1105</td>
-      <td>39981</td>
-      <td>43.001126</td>
-      <td>69</td>
-      <td>38983</td>
-    </tr>
-    <tr>
-      <th>2014.0</th>
-      <td>38.887830</td>
-      <td>1125</td>
-      <td>47431</td>
-      <td>37.977763</td>
-      <td>101</td>
-      <td>46476</td>
-    </tr>
-    <tr>
-      <th>2015.0</th>
-      <td>37.365511</td>
-      <td>1362</td>
-      <td>55839</td>
-      <td>36.505305</td>
-      <td>116</td>
-      <td>54763</td>
-    </tr>
-    <tr>
-      <th>2016.0</th>
-      <td>36.272548</td>
-      <td>1844</td>
-      <td>64731</td>
-      <td>33.330179</td>
-      <td>147</td>
-      <td>63063</td>
-    </tr>
-    <tr>
-      <th>2017.0</th>
-      <td>33.248882</td>
-      <td>1898</td>
-      <td>73785</td>
-      <td>30.579104</td>
-      <td>156</td>
-      <td>72086</td>
-    </tr>
-    <tr>
-      <th>2018.0</th>
-      <td>29.255056</td>
-      <td>4077</td>
-      <td>96645</td>
-      <td>27.738977</td>
-      <td>182</td>
-      <td>91377</td>
-    </tr>
-    <tr>
-      <th>2019.0</th>
-      <td>26.530127</td>
-      <td>3790</td>
-      <td>112878</td>
-      <td>25.065422</td>
-      <td>203</td>
-      <td>110597</td>
-    </tr>
-    <tr>
-      <th>2020.0</th>
-      <td>22.946598</td>
-      <td>3835</td>
-      <td>117522</td>
-      <td>21.554175</td>
-      <td>273</td>
-      <td>113735</td>
-    </tr>
-    <tr>
-      <th>2021.0</th>
-      <td>24.416186</td>
-      <td>5566</td>
-      <td>127862</td>
-      <td>13.526563</td>
-      <td>4112</td>
-      <td>128238</td>
+      <th>여자</th>
+      <td>8118</td>
+      <td>6097083</td>
     </tr>
   </tbody>
 </table>
@@ -796,20 +930,18 @@ title="Print to PDF"
 <p>위의 결과를 보면 만들어진 데이터 프레임에서 다음과 같은 특성이 보인다.</p>
 <ul class="simple">
 <li><p>열이름이  한 칸 위로 올라가 있다. 이는 문자로 된 열이름(column name)이 비어있다는 것이다.</p></li>
-<li><p>행인덱스가 연도로 되어있으며 숫자로 된 행인덱스가 없는 것을 알 수 있다.</p></li>
+<li><p>행인덱스가 <code class="docutils literal notranslate"><span class="pre">가구주_성별코드</span></code> 로 되어 있으며 숫자로 된 행인덱스가 없는 것을 알 수 있다.</p></li>
 </ul>
 <p>우리가 사용할 수 있는 유용한 데이터프레임을 만들기 위해서는 인덱스의 재구성이 필요하다. 메소드 <code class="docutils literal notranslate"><span class="pre">reset_index()</span></code>를 사용해 보자.</p>
+<p>그룹별 정보를 가진 새로운 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df_sex</span></code>를 만들어 보자.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_com</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sex</span> <span class="o">=</span> <span class="n">df_group</span><span class="p">[[</span><span class="s1">&#39;가구원수&#39;</span><span class="p">,</span><span class="s1">&#39;근로소득&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_sex</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\jieun\AppData\Local\Temp\ipykernel_59076\1907006016.py:1: FutureWarning: The default value of numeric_only in DataFrameGroupBy.sum is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
-  df_com.sum().reset_index()
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -828,153 +960,36 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>연도</th>
-      <th>산재_평균근로자수</th>
-      <th>산재만_가입된사업장수</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_평균근로자수</th>
-      <th>고용만_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
+      <th>가구주_성별코드</th>
+      <th>가구원수</th>
+      <th>근로소득</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>2010.0</td>
-      <td>58.287574</td>
-      <td>783</td>
-      <td>23943</td>
-      <td>56.292972</td>
-      <td>58</td>
-      <td>23077</td>
+      <td>남자</td>
+      <td>42754</td>
+      <td>48411503</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2011.0</td>
-      <td>59.151566</td>
-      <td>844</td>
-      <td>27919</td>
-      <td>57.321363</td>
-      <td>80</td>
-      <td>27129</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2012.0</td>
-      <td>52.286663</td>
-      <td>972</td>
-      <td>35896</td>
-      <td>48.572728</td>
-      <td>82</td>
-      <td>34950</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2013.0</td>
-      <td>44.299320</td>
-      <td>1105</td>
-      <td>39981</td>
-      <td>43.001126</td>
-      <td>69</td>
-      <td>38983</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2014.0</td>
-      <td>38.887830</td>
-      <td>1125</td>
-      <td>47431</td>
-      <td>37.977763</td>
-      <td>101</td>
-      <td>46476</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2015.0</td>
-      <td>37.365511</td>
-      <td>1362</td>
-      <td>55839</td>
-      <td>36.505305</td>
-      <td>116</td>
-      <td>54763</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2016.0</td>
-      <td>36.272548</td>
-      <td>1844</td>
-      <td>64731</td>
-      <td>33.330179</td>
-      <td>147</td>
-      <td>63063</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2017.0</td>
-      <td>33.248882</td>
-      <td>1898</td>
-      <td>73785</td>
-      <td>30.579104</td>
-      <td>156</td>
-      <td>72086</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2018.0</td>
-      <td>29.255056</td>
-      <td>4077</td>
-      <td>96645</td>
-      <td>27.738977</td>
-      <td>182</td>
-      <td>91377</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2019.0</td>
-      <td>26.530127</td>
-      <td>3790</td>
-      <td>112878</td>
-      <td>25.065422</td>
-      <td>203</td>
-      <td>110597</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>2020.0</td>
-      <td>22.946598</td>
-      <td>3835</td>
-      <td>117522</td>
-      <td>21.554175</td>
-      <td>273</td>
-      <td>113735</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>2021.0</td>
-      <td>24.416186</td>
-      <td>5566</td>
-      <td>127862</td>
-      <td>13.526563</td>
-      <td>4112</td>
-      <td>128238</td>
+      <td>여자</td>
+      <td>8118</td>
+      <td>6097083</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p>이제 연도별로 산재보험 가입된 사업장 수 정보를 가진 새로운 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df_year</span></code>를 만들어 보자.</p>
+<p>참고로 그룹별 총함이 아닌 평균값을 구할 수 있을까? <code class="docutils literal notranslate"><span class="pre">sum()</span></code> 이 아닌 <code class="docutils literal notranslate"><span class="pre">mean()</span></code> ₩메소드를 사용하면 된다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_year</span> <span class="o">=</span> <span class="n">df_com</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="n">df_year</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_group</span><span class="p">[[</span><span class="s1">&#39;가구원수&#39;</span><span class="p">,</span><span class="s1">&#39;근로소득&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\jieun\AppData\Local\Temp\ipykernel_59076\495942065.py:1: FutureWarning: The default value of numeric_only in DataFrameGroupBy.sum is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
-  df_year = df_com.sum().reset_index()
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -993,135 +1008,23 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>연도</th>
-      <th>산재_평균근로자수</th>
-      <th>산재만_가입된사업장수</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_평균근로자수</th>
-      <th>고용만_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
+      <th>가구주_성별코드</th>
+      <th>가구원수</th>
+      <th>근로소득</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>2010.0</td>
-      <td>58.287574</td>
-      <td>783</td>
-      <td>23943</td>
-      <td>56.292972</td>
-      <td>58</td>
-      <td>23077</td>
+      <td>남자</td>
+      <td>3.078707</td>
+      <td>3486.102326</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2011.0</td>
-      <td>59.151566</td>
-      <td>844</td>
-      <td>27919</td>
-      <td>57.321363</td>
-      <td>80</td>
-      <td>27129</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2012.0</td>
-      <td>52.286663</td>
-      <td>972</td>
-      <td>35896</td>
-      <td>48.572728</td>
-      <td>82</td>
-      <td>34950</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2013.0</td>
-      <td>44.299320</td>
-      <td>1105</td>
-      <td>39981</td>
-      <td>43.001126</td>
-      <td>69</td>
-      <td>38983</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2014.0</td>
-      <td>38.887830</td>
-      <td>1125</td>
-      <td>47431</td>
-      <td>37.977763</td>
-      <td>101</td>
-      <td>46476</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2015.0</td>
-      <td>37.365511</td>
-      <td>1362</td>
-      <td>55839</td>
-      <td>36.505305</td>
-      <td>116</td>
-      <td>54763</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2016.0</td>
-      <td>36.272548</td>
-      <td>1844</td>
-      <td>64731</td>
-      <td>33.330179</td>
-      <td>147</td>
-      <td>63063</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2017.0</td>
-      <td>33.248882</td>
-      <td>1898</td>
-      <td>73785</td>
-      <td>30.579104</td>
-      <td>156</td>
-      <td>72086</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2018.0</td>
-      <td>29.255056</td>
-      <td>4077</td>
-      <td>96645</td>
-      <td>27.738977</td>
-      <td>182</td>
-      <td>91377</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2019.0</td>
-      <td>26.530127</td>
-      <td>3790</td>
-      <td>112878</td>
-      <td>25.065422</td>
-      <td>203</td>
-      <td>110597</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>2020.0</td>
-      <td>22.946598</td>
-      <td>3835</td>
-      <td>117522</td>
-      <td>21.554175</td>
-      <td>273</td>
-      <td>113735</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>2021.0</td>
-      <td>24.416186</td>
-      <td>5566</td>
-      <td>127862</td>
-      <td>13.526563</td>
-      <td>4112</td>
-      <td>128238</td>
+      <td>여자</td>
+      <td>1.850889</td>
+      <td>1390.123803</td>
     </tr>
   </tbody>
 </table>
@@ -1129,19 +1032,12 @@ title="Print to PDF"
 </div>
 </section>
 <section id="id3">
-<h2>새로운 정보<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
-<p>이제 연도별로 나타난 정보에 대한 모든 열을 더하면 전체 값이 나온다. 전체 값을 새로운 변수 <code class="docutils literal notranslate"><span class="pre">total</span></code> 로 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df_year</span></code>에 추가하자.</p>
-<p><strong>잠깐!</strong></p>
-<p>위에서 사용한 메소드 <code class="docutils literal notranslate"><span class="pre">sum(axis=1)</span></code> 는 모든 열 들을 더해주는 작업을 수행하는데 년도를 나타내는 열 <code class="docutils literal notranslate"><span class="pre">연도</span></code> 도 같이 결과에 더해졌다.
-그리고 필요하지 않은 데이터까지 더해진 것을 볼 수 있다.</p>
-<p>앞에서 본 것 처럼 <code class="docutils literal notranslate"><span class="pre">sum(axis=1)</span></code> 는 자동적으로 문자열을 포함한 열을 제외해주는데 이러한 자동 기능을 자주 이용하면 위와 같은 실수를 범할 수 있다.
-왜냐하면 오류가 나오지 않기 때문이다.</p>
-<p><strong>안전한 프로그래밍</strong>을 위하여 합을 구할 모든 열의 이름을 가진 리스트로 슬라이싱을 먼저 하고 메소드 <code class="docutils literal notranslate"><span class="pre">sum(axis=1)</span></code> 를 적용하자.</p>
-<p>예시로, 보험 하나만 가입된 사업장 수를 파악하기 위해 산재보험만 가입된 사업장 수(“산재만_가입된사업장수”)와 고용보험만 가입된 사업장 수(“고용만_가입된사업장수”)를 <code class="docutils literal notranslate"><span class="pre">sum(axis=1)</span></code>을 통해 계산해보자.</p>
+<h2>여러 개의 그룹<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p>이제 두 개 이상의 범주형 변수의 조합으로 만들어진 그룹에 대한 방법을 알아봅니다.</p>
+<p>가ㅖ금융복지 데이터에서 <code class="docutils literal notranslate"><span class="pre">수도권여부</span></code> 와 <code class="docutils literal notranslate"><span class="pre">가구주_성별</span></code> 을 조합한 그룹에 대하여 각 금융항목에 대한 평균을 계산합니다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_year</span><span class="p">[</span><span class="s2">&quot;하나만 가입된 사업장수&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[[</span><span class="s2">&quot;산재만_가입된사업장수&quot;</span><span class="p">,</span><span class="s2">&quot;고용만_가입된사업장수&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">df_year</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span> <span class="n">by</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;수도권여부&#39;</span><span class="p">,</span><span class="s1">&#39;가구주_성별코드&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1164,522 +1060,85 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>연도</th>
-      <th>산재_평균근로자수</th>
-      <th>산재만_가입된사업장수</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_평균근로자수</th>
-      <th>고용만_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
-      <th>하나만 가입된 사업장수</th>
+      <th>수도권여부</th>
+      <th>가구주_성별코드</th>
+      <th>조사연도</th>
+      <th>가구고유번호</th>
+      <th>가구원수</th>
+      <th>만연령</th>
+      <th>자산금액</th>
+      <th>부채금액</th>
+      <th>근로소득</th>
+      <th>사업소득</th>
+      <th>재산소득</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>2010.0</td>
-      <td>58.287574</td>
-      <td>783</td>
-      <td>23943</td>
-      <td>56.292972</td>
-      <td>58</td>
-      <td>23077</td>
-      <td>841</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2011.0</td>
-      <td>59.151566</td>
-      <td>844</td>
-      <td>27919</td>
-      <td>57.321363</td>
-      <td>80</td>
-      <td>27129</td>
-      <td>924</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2012.0</td>
-      <td>52.286663</td>
-      <td>972</td>
-      <td>35896</td>
-      <td>48.572728</td>
-      <td>82</td>
-      <td>34950</td>
-      <td>1054</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2013.0</td>
-      <td>44.299320</td>
-      <td>1105</td>
-      <td>39981</td>
-      <td>43.001126</td>
-      <td>69</td>
-      <td>38983</td>
-      <td>1174</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2014.0</td>
-      <td>38.887830</td>
-      <td>1125</td>
-      <td>47431</td>
-      <td>37.977763</td>
-      <td>101</td>
-      <td>46476</td>
-      <td>1226</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2015.0</td>
-      <td>37.365511</td>
-      <td>1362</td>
-      <td>55839</td>
-      <td>36.505305</td>
-      <td>116</td>
-      <td>54763</td>
-      <td>1478</td>
-    </tr>
-    <tr>
-      <th>6</th>
+      <td>비수도권</td>
+      <td>남자</td>
       <td>2016.0</td>
-      <td>36.272548</td>
-      <td>1844</td>
-      <td>64731</td>
-      <td>33.330179</td>
-      <td>147</td>
-      <td>63063</td>
-      <td>1991</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2017.0</td>
-      <td>33.248882</td>
-      <td>1898</td>
-      <td>73785</td>
-      <td>30.579104</td>
-      <td>156</td>
-      <td>72086</td>
-      <td>2054</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2018.0</td>
-      <td>29.255056</td>
-      <td>4077</td>
-      <td>96645</td>
-      <td>27.738977</td>
-      <td>182</td>
-      <td>91377</td>
-      <td>4259</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2019.0</td>
-      <td>26.530127</td>
-      <td>3790</td>
-      <td>112878</td>
-      <td>25.065422</td>
-      <td>203</td>
-      <td>110597</td>
-      <td>3993</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>2020.0</td>
-      <td>22.946598</td>
-      <td>3835</td>
-      <td>117522</td>
-      <td>21.554175</td>
-      <td>273</td>
-      <td>113735</td>
-      <td>4108</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>2021.0</td>
-      <td>24.416186</td>
-      <td>5566</td>
-      <td>127862</td>
-      <td>13.526563</td>
-      <td>4112</td>
-      <td>128238</td>
-      <td>9678</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>이번에는 고용보험에 가입한 사업장에 대한 백분율(percentage)를 새롭게 만들어 보자.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_year</span><span class="p">[</span><span class="s1">&#39;percent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[</span><span class="s1">&#39;고용만_가입된사업장수&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_year</span><span class="p">[</span><span class="s1">&#39;고용_가입된사업장수&#39;</span><span class="p">]</span> <span class="o">*</span><span class="mi">100</span>
-<span class="n">df_year</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>연도</th>
-      <th>산재_평균근로자수</th>
-      <th>산재만_가입된사업장수</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_평균근로자수</th>
-      <th>고용만_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
-      <th>하나만 가입된 사업장수</th>
-      <th>percent</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2010.0</td>
-      <td>58.287574</td>
-      <td>783</td>
-      <td>23943</td>
-      <td>56.292972</td>
-      <td>58</td>
-      <td>23077</td>
-      <td>841</td>
-      <td>0.251332</td>
+      <td>4.974142e+08</td>
+      <td>3.057023</td>
+      <td>53.978093</td>
+      <td>36027.228974</td>
+      <td>5691.092140</td>
+      <td>3191.019485</td>
+      <td>1389.669639</td>
+      <td>198.346764</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2011.0</td>
-      <td>59.151566</td>
-      <td>844</td>
-      <td>27919</td>
-      <td>57.321363</td>
-      <td>80</td>
-      <td>27129</td>
-      <td>924</td>
-      <td>0.294887</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2012.0</td>
-      <td>52.286663</td>
-      <td>972</td>
-      <td>35896</td>
-      <td>48.572728</td>
-      <td>82</td>
-      <td>34950</td>
-      <td>1054</td>
-      <td>0.234621</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2013.0</td>
-      <td>44.299320</td>
-      <td>1105</td>
-      <td>39981</td>
-      <td>43.001126</td>
-      <td>69</td>
-      <td>38983</td>
-      <td>1174</td>
-      <td>0.177000</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2014.0</td>
-      <td>38.887830</td>
-      <td>1125</td>
-      <td>47431</td>
-      <td>37.977763</td>
-      <td>101</td>
-      <td>46476</td>
-      <td>1226</td>
-      <td>0.217316</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2015.0</td>
-      <td>37.365511</td>
-      <td>1362</td>
-      <td>55839</td>
-      <td>36.505305</td>
-      <td>116</td>
-      <td>54763</td>
-      <td>1478</td>
-      <td>0.211822</td>
-    </tr>
-    <tr>
-      <th>6</th>
+      <td>비수도권</td>
+      <td>여자</td>
       <td>2016.0</td>
-      <td>36.272548</td>
-      <td>1844</td>
-      <td>64731</td>
-      <td>33.330179</td>
-      <td>147</td>
-      <td>63063</td>
-      <td>1991</td>
-      <td>0.233100</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2017.0</td>
-      <td>33.248882</td>
-      <td>1898</td>
-      <td>73785</td>
-      <td>30.579104</td>
-      <td>156</td>
-      <td>72086</td>
-      <td>2054</td>
-      <td>0.216408</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2018.0</td>
-      <td>29.255056</td>
-      <td>4077</td>
-      <td>96645</td>
-      <td>27.738977</td>
-      <td>182</td>
-      <td>91377</td>
-      <td>4259</td>
-      <td>0.199175</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2019.0</td>
-      <td>26.530127</td>
-      <td>3790</td>
-      <td>112878</td>
-      <td>25.065422</td>
-      <td>203</td>
-      <td>110597</td>
-      <td>3993</td>
-      <td>0.183549</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>2020.0</td>
-      <td>22.946598</td>
-      <td>3835</td>
-      <td>117522</td>
-      <td>21.554175</td>
-      <td>273</td>
-      <td>113735</td>
-      <td>4108</td>
-      <td>0.240032</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>2021.0</td>
-      <td>24.416186</td>
-      <td>5566</td>
-      <td>127862</td>
-      <td>13.526563</td>
-      <td>4112</td>
-      <td>128238</td>
-      <td>9678</td>
-      <td>3.206538</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>작업을 하다가 필요없는 열이 생성되었을 때는 drop() 함수를 이용해 삭제할 수 있다.
-여기서 axis=0은 행을 뜻하며, axis=1이 뜻하는 것은 열을 뜻한다.
-밑의 코드는 산재_가입확률과 산재_가입X의 열을 전체 삭제한다는 의미이다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_year</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;percent&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>연도</th>
-      <th>산재_평균근로자수</th>
-      <th>산재만_가입된사업장수</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_평균근로자수</th>
-      <th>고용만_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
-      <th>하나만 가입된 사업장수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2010.0</td>
-      <td>58.287574</td>
-      <td>783</td>
-      <td>23943</td>
-      <td>56.292972</td>
-      <td>58</td>
-      <td>23077</td>
-      <td>841</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2011.0</td>
-      <td>59.151566</td>
-      <td>844</td>
-      <td>27919</td>
-      <td>57.321363</td>
-      <td>80</td>
-      <td>27129</td>
-      <td>924</td>
+      <td>4.908458e+08</td>
+      <td>1.774295</td>
+      <td>61.939046</td>
+      <td>14026.637757</td>
+      <td>2067.442703</td>
+      <td>1156.900035</td>
+      <td>419.156740</td>
+      <td>81.298154</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2012.0</td>
-      <td>52.286663</td>
-      <td>972</td>
-      <td>35896</td>
-      <td>48.572728</td>
-      <td>82</td>
-      <td>34950</td>
-      <td>1054</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2013.0</td>
-      <td>44.299320</td>
-      <td>1105</td>
-      <td>39981</td>
-      <td>43.001126</td>
-      <td>69</td>
-      <td>38983</td>
-      <td>1174</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2014.0</td>
-      <td>38.887830</td>
-      <td>1125</td>
-      <td>47431</td>
-      <td>37.977763</td>
-      <td>101</td>
-      <td>46476</td>
-      <td>1226</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2015.0</td>
-      <td>37.365511</td>
-      <td>1362</td>
-      <td>55839</td>
-      <td>36.505305</td>
-      <td>116</td>
-      <td>54763</td>
-      <td>1478</td>
-    </tr>
-    <tr>
-      <th>6</th>
+      <td>수도권</td>
+      <td>남자</td>
       <td>2016.0</td>
-      <td>36.272548</td>
-      <td>1844</td>
-      <td>64731</td>
-      <td>33.330179</td>
-      <td>147</td>
-      <td>63063</td>
-      <td>1991</td>
+      <td>4.677278e+08</td>
+      <td>3.119717</td>
+      <td>51.121174</td>
+      <td>53659.168853</td>
+      <td>10784.188840</td>
+      <td>4044.197793</td>
+      <td>1187.507183</td>
+      <td>446.537372</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>2017.0</td>
-      <td>33.248882</td>
-      <td>1898</td>
-      <td>73785</td>
-      <td>30.579104</td>
-      <td>156</td>
-      <td>72086</td>
-      <td>2054</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2018.0</td>
-      <td>29.255056</td>
-      <td>4077</td>
-      <td>96645</td>
-      <td>27.738977</td>
-      <td>182</td>
-      <td>91377</td>
-      <td>4259</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2019.0</td>
-      <td>26.530127</td>
-      <td>3790</td>
-      <td>112878</td>
-      <td>25.065422</td>
-      <td>203</td>
-      <td>110597</td>
-      <td>3993</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>2020.0</td>
-      <td>22.946598</td>
-      <td>3835</td>
-      <td>117522</td>
-      <td>21.554175</td>
-      <td>273</td>
-      <td>113735</td>
-      <td>4108</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>2021.0</td>
-      <td>24.416186</td>
-      <td>5566</td>
-      <td>127862</td>
-      <td>13.526563</td>
-      <td>4112</td>
-      <td>128238</td>
-      <td>9678</td>
+      <th>3</th>
+      <td>수도권</td>
+      <td>여자</td>
+      <td>2016.0</td>
+      <td>4.596471e+08</td>
+      <td>1.996040</td>
+      <td>54.456106</td>
+      <td>24496.046865</td>
+      <td>4148.110231</td>
+      <td>1832.094389</td>
+      <td>496.456766</td>
+      <td>147.920792</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="id4">
-<h2>여러 개의 그룹<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
-<p>산재, 고용보험 가입 데이터의 그룹화 기준을 <code class="docutils literal notranslate"><span class="pre">시도</span></code>, <code class="docutils literal notranslate"><span class="pre">연도</span></code>로 적용해보자.</p>
+<p>위의 코드에서 범주형 항목을 가진 열들은 <code class="docutils literal notranslate"><span class="pre">mean()</span></code> 메소드를 적용할 때 자동적으로 제외됨을 알 수 있다.</p>
+<p>그룹별 평균에서 <code class="docutils literal notranslate"><span class="pre">조사연도</span></code> 와 <code class="docutils literal notranslate"><span class="pre">가구고유번호</span></code> 의 평균은 의미가 없으므로 아레 코드를 이용하여 제외할 수 있다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span> <span class="n">by</span> <span class="o">=</span><span class="p">[</span><span class="s2">&quot;시도&quot;</span><span class="p">,</span> <span class="s2">&quot;연도&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span> <span class="n">by</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;수도권여부&#39;</span><span class="p">,</span><span class="s1">&#39;가구주_성별코드&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;조사연도&#39;</span><span class="p">,</span><span class="s1">&#39;가구고유번호&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1702,314 +1161,70 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>시도</th>
-      <th>연도</th>
-      <th>산재_평균근로자수</th>
-      <th>산재만_가입된사업장수</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_평균근로자수</th>
-      <th>고용만_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
+      <th>수도권여부</th>
+      <th>가구주_성별코드</th>
+      <th>가구원수</th>
+      <th>만연령</th>
+      <th>자산금액</th>
+      <th>부채금액</th>
+      <th>근로소득</th>
+      <th>사업소득</th>
+      <th>재산소득</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>광주</td>
-      <td>2010.0</td>
-      <td>6.863187</td>
-      <td>52.0</td>
-      <td>1820.0</td>
-      <td>6.847419</td>
-      <td>1.0</td>
-      <td>1763.0</td>
+      <td>비수도권</td>
+      <td>남자</td>
+      <td>3.057023</td>
+      <td>53.978093</td>
+      <td>36027.228974</td>
+      <td>5691.092140</td>
+      <td>3191.019485</td>
+      <td>1389.669639</td>
+      <td>198.346764</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>광주</td>
-      <td>2011.0</td>
-      <td>7.361302</td>
-      <td>57.0</td>
-      <td>2181.0</td>
-      <td>7.359587</td>
-      <td>10.0</td>
-      <td>2133.0</td>
+      <td>비수도권</td>
+      <td>여자</td>
+      <td>1.774295</td>
+      <td>61.939046</td>
+      <td>14026.637757</td>
+      <td>2067.442703</td>
+      <td>1156.900035</td>
+      <td>419.156740</td>
+      <td>81.298154</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>광주</td>
-      <td>2012.0</td>
-      <td>6.922905</td>
-      <td>56.0</td>
-      <td>2685.0</td>
-      <td>7.187380</td>
-      <td>4.0</td>
-      <td>2615.0</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>3.119717</td>
+      <td>51.121174</td>
+      <td>53659.168853</td>
+      <td>10784.188840</td>
+      <td>4044.197793</td>
+      <td>1187.507183</td>
+      <td>446.537372</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>광주</td>
-      <td>2013.0</td>
-      <td>5.565035</td>
-      <td>71.0</td>
-      <td>3106.0</td>
-      <td>5.800198</td>
-      <td>2.0</td>
-      <td>3028.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>광주</td>
-      <td>2014.0</td>
-      <td>5.285354</td>
-      <td>72.0</td>
-      <td>3571.0</td>
-      <td>5.138937</td>
-      <td>2.0</td>
-      <td>3498.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>79</th>
-      <td>인천</td>
-      <td>2017.0</td>
-      <td>5.003619</td>
-      <td>230.0</td>
-      <td>8013.0</td>
-      <td>4.661026</td>
-      <td>22.0</td>
-      <td>7800.0</td>
-    </tr>
-    <tr>
-      <th>80</th>
-      <td>인천</td>
-      <td>2018.0</td>
-      <td>4.082546</td>
-      <td>622.0</td>
-      <td>11109.0</td>
-      <td>3.808002</td>
-      <td>26.0</td>
-      <td>10323.0</td>
-    </tr>
-    <tr>
-      <th>81</th>
-      <td>인천</td>
-      <td>2019.0</td>
-      <td>3.764131</td>
-      <td>554.0</td>
-      <td>12986.0</td>
-      <td>3.648073</td>
-      <td>22.0</td>
-      <td>12639.0</td>
-    </tr>
-    <tr>
-      <th>82</th>
-      <td>인천</td>
-      <td>2020.0</td>
-      <td>3.125181</td>
-      <td>551.0</td>
-      <td>13812.0</td>
-      <td>3.018436</td>
-      <td>19.0</td>
-      <td>13235.0</td>
-    </tr>
-    <tr>
-      <th>83</th>
-      <td>인천</td>
-      <td>2021.0</td>
-      <td>2.604997</td>
-      <td>703.0</td>
-      <td>15648.0</td>
-      <td>1.916362</td>
-      <td>444.0</td>
-      <td>15615.0</td>
+      <td>수도권</td>
+      <td>여자</td>
+      <td>1.996040</td>
+      <td>54.456106</td>
+      <td>24496.046865</td>
+      <td>4148.110231</td>
+      <td>1832.094389</td>
+      <td>496.456766</td>
+      <td>147.920792</td>
     </tr>
   </tbody>
 </table>
-<p>84 rows × 8 columns</p>
 </div></div></div>
 </div>
-<p>그룹화 기준을 <code class="docutils literal notranslate"><span class="pre">연도</span></code>, <code class="docutils literal notranslate"><span class="pre">시도</span></code>로 바꾸어보자.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span> <span class="n">by</span> <span class="o">=</span><span class="p">[</span><span class="s2">&quot;연도&quot;</span><span class="p">,</span> <span class="s2">&quot;시도&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>연도</th>
-      <th>시도</th>
-      <th>산재_평균근로자수</th>
-      <th>산재만_가입된사업장수</th>
-      <th>산재_가입된사업장수</th>
-      <th>고용_평균근로자수</th>
-      <th>고용만_가입된사업장수</th>
-      <th>고용_가입된사업장수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2010.0</td>
-      <td>광주</td>
-      <td>6.863187</td>
-      <td>52.0</td>
-      <td>1820.0</td>
-      <td>6.847419</td>
-      <td>1.0</td>
-      <td>1763.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2010.0</td>
-      <td>대구</td>
-      <td>7.366627</td>
-      <td>82.0</td>
-      <td>2523.0</td>
-      <td>7.051240</td>
-      <td>7.0</td>
-      <td>2420.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2010.0</td>
-      <td>대전</td>
-      <td>9.100746</td>
-      <td>59.0</td>
-      <td>1340.0</td>
-      <td>8.816680</td>
-      <td>3.0</td>
-      <td>1271.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2010.0</td>
-      <td>부산</td>
-      <td>8.126126</td>
-      <td>121.0</td>
-      <td>3108.0</td>
-      <td>7.622692</td>
-      <td>11.0</td>
-      <td>2979.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2010.0</td>
-      <td>서울</td>
-      <td>10.971553</td>
-      <td>343.0</td>
-      <td>11741.0</td>
-      <td>10.869985</td>
-      <td>30.0</td>
-      <td>11391.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>79</th>
-      <td>2021.0</td>
-      <td>대전</td>
-      <td>2.658709</td>
-      <td>434.0</td>
-      <td>7917.0</td>
-      <td>1.887973</td>
-      <td>369.0</td>
-      <td>8007.0</td>
-    </tr>
-    <tr>
-      <th>80</th>
-      <td>2021.0</td>
-      <td>부산</td>
-      <td>2.874647</td>
-      <td>688.0</td>
-      <td>17367.0</td>
-      <td>1.909389</td>
-      <td>660.0</td>
-      <td>17680.0</td>
-    </tr>
-    <tr>
-      <th>81</th>
-      <td>2021.0</td>
-      <td>서울</td>
-      <td>7.487265</td>
-      <td>2375.0</td>
-      <td>59009.0</td>
-      <td>2.020801</td>
-      <td>1410.0</td>
-      <td>58700.0</td>
-    </tr>
-    <tr>
-      <th>82</th>
-      <td>2021.0</td>
-      <td>울산</td>
-      <td>3.442591</td>
-      <td>273.0</td>
-      <td>5095.0</td>
-      <td>2.080108</td>
-      <td>262.0</td>
-      <td>5193.0</td>
-    </tr>
-    <tr>
-      <th>83</th>
-      <td>2021.0</td>
-      <td>인천</td>
-      <td>2.604997</td>
-      <td>703.0</td>
-      <td>15648.0</td>
-      <td>1.916362</td>
-      <td>444.0</td>
-      <td>15615.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>84 rows × 8 columns</p>
-</div></div></div>
-</div>
-</section>
-<section id="id5">
-<h2>요약<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p>여러 개의 열을 이용하여 새로운 열을 만드는 방법은 열을 선택하고 산술적인 연산을 적용해 준다.</p></li>
-<li><p>열에 대한 요약 통계는 다양한 메소드(예를 들어 <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, <code class="docutils literal notranslate"><span class="pre">mean()</span></code> 등)을 적용하며 선택문 <code class="docutils literal notranslate"><span class="pre">axis=0</span></code> 을 이용한다.</p></li>
-<li><p>자료의 그룹화는 <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> 를 사용하며 이를 통해 그룹별로 요약할 수 있다.</p></li>
-</ul>
 </section>
 </section>
 
@@ -2040,6 +1255,20 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="dataframe_summary.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2.2. </span>데이터프레임의 요약</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="dataframe_merge.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2.4. </span>데이터프레임의 결합</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>
