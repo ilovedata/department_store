@@ -17,4 +17,4 @@ chapters:
   - file: notebook/day3/day_intro
     sections:
       - file: notebook/day3/correlation
-#     - file: notebook/day3/practice_day3
+      - file: notebook/day3/practice_insurance
