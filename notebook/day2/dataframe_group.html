@@ -1,0 +1,1262 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2.3. 데이터 그룹화 &#8212; 파이썬 프로그래밍의 기초와 데이터 활용 방법</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebook/day2/dataframe_group';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.4. 데이터프레임의 결합" href="dataframe_merge.html" />
+    <link rel="prev" title="2.2. 데이터프레임의 요약" href="dataframe_summary.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">파이썬 프로그래밍의 기초와 데이터 활용 방법</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    개요
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../day1/intro-python.html">1. 파이썬 소개</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../day1/basic-expression.html">1.1. 파이썬 표현식의 기초</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="dataframe.html">2. 데이터프레임</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dataframe_introduction.html">2.1. 데이터프레임의 정의</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe_summary.html">2.2. 데이터프레임의 요약</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.3. 데이터 그룹화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe_merge.html">2.4. 데이터프레임의 결합</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../day3/day_intro.html">3. 실습 및 부록</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../day3/correlation.html">3.1. 두 변수의 관계</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day3/practice_insurance.html">3.2. 데이터 프레임을 이용한 자료 요약 실습</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebook/day2/dataframe_group.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>데이터 그룹화</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">그룹별 요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">여러 개의 그룹</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">2.3. </span>데이터 그룹화<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>앞 서 <strong>데이터프레임의 요약</strong>에서는 전체 데이터를 요약 (count, mean, 분위수 등)했었다. 예를 들어, 가계금융복지조사 데이터에서 가구주가 남자인 자료를 요약하려면 전체 데이터에서 가구주가 남자인 데이터를 추출하여 요약할 수 있다. 이 절에서는 주어진 범주를 이용하여 그룹별로 한번에 요약하는 방법에 대해 알아보고자 한다.</p>
+<p>데이터프레임을 그룹으로 나눌 때 여러 개의 기준을 조합해서 나눌 수도 있다.</p>
+<p>앞서 사용했던 가계금융복지조사 데이터를 불러오자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://uos-bigdata.github.io/lab_data/docs/assets/data_lab_depart/2016_housemasterdata_part1.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;cp949&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>조사연도</th>
+      <th>가구고유번호</th>
+      <th>수도권여부</th>
+      <th>가구주_성별코드</th>
+      <th>가구원수</th>
+      <th>노인가구코드</th>
+      <th>조손가구코드</th>
+      <th>한부모가구코드</th>
+      <th>다문화가구코드</th>
+      <th>장애인가구코드</th>
+      <th>...</th>
+      <th>혼인상태코드</th>
+      <th>입주형태통합코드</th>
+      <th>전용면적규모코드</th>
+      <th>주택종류통합코드</th>
+      <th>부채보유여부</th>
+      <th>자산금액</th>
+      <th>부채금액</th>
+      <th>근로소득</th>
+      <th>사업소득</th>
+      <th>재산소득</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2016</td>
+      <td>10200111</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>연립 및 다세대</td>
+      <td>부채 보유</td>
+      <td>76202</td>
+      <td>22200</td>
+      <td>4000</td>
+      <td>5000</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2016</td>
+      <td>10200121</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>미혼</td>
+      <td>자기집</td>
+      <td>132.2㎡ 이상</td>
+      <td>단독주택</td>
+      <td>부채 보유</td>
+      <td>116466</td>
+      <td>45000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2016</td>
+      <td>10200151</td>
+      <td>수도권</td>
+      <td>여자</td>
+      <td>3</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>86.0㎡ ~ 132.2㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>125360</td>
+      <td>8000</td>
+      <td>12600</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2016</td>
+      <td>10200161</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>5</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>79406</td>
+      <td>25500</td>
+      <td>0</td>
+      <td>4200</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2016</td>
+      <td>10200171</td>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>2</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>45600</td>
+      <td>27800</td>
+      <td>12420</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>18268</th>
+      <td>2016</td>
+      <td>994200361</td>
+      <td>비수도권</td>
+      <td>여자</td>
+      <td>2</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>49.6㎡ 미만</td>
+      <td>연립 및 다세대</td>
+      <td>부채 미보유</td>
+      <td>19213</td>
+      <td>0</td>
+      <td>888</td>
+      <td>100</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>18269</th>
+      <td>2016</td>
+      <td>994200381</td>
+      <td>비수도권</td>
+      <td>여자</td>
+      <td>1</td>
+      <td>노인가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>사별</td>
+      <td>기타</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>단독주택</td>
+      <td>부채 미보유</td>
+      <td>2200</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>18270</th>
+      <td>2016</td>
+      <td>994505311</td>
+      <td>비수도권</td>
+      <td>남자</td>
+      <td>5</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>자기집</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>단독주택</td>
+      <td>부채 미보유</td>
+      <td>15300</td>
+      <td>0</td>
+      <td>4500</td>
+      <td>0</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>18271</th>
+      <td>2016</td>
+      <td>994505321</td>
+      <td>비수도권</td>
+      <td>남자</td>
+      <td>4</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>배우자있음</td>
+      <td>기타</td>
+      <td>49.6㎡ ~ 86.0㎡ 미만</td>
+      <td>단독주택</td>
+      <td>부채 미보유</td>
+      <td>200</td>
+      <td>0</td>
+      <td>2160</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>18272</th>
+      <td>2016</td>
+      <td>995200351</td>
+      <td>비수도권</td>
+      <td>남자</td>
+      <td>1</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>그 외 가구</td>
+      <td>...</td>
+      <td>이혼</td>
+      <td>월세</td>
+      <td>49.6㎡ 미만</td>
+      <td>아파트</td>
+      <td>부채 보유</td>
+      <td>860</td>
+      <td>150</td>
+      <td>1200</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>18273 rows × 26 columns</p>
+</div></div></div>
+</div>
+<p>먼저 가구주의 성별, 즉 남여별로 가구 구성원의 총합과 근로소득의 총합계 금액을 계산해 보자.</p>
+<p>가주주 성별로 사업소득의 평균을 계산하려면</p>
+<ol class="arabic simple">
+<li><p>전체 자료를 성별로 나누고</p></li>
+<li><p>각 성별로 가구 구성원과 근로소득를 더해야한다.</p></li>
+</ol>
+<p>즉, 데이터프레임을 지정된 열(<code class="docutils literal notranslate"><span class="pre">가구주_성별코드</span></code>)의 값(<code class="docutils literal notranslate"><span class="pre">남자</span></code>, <code class="docutils literal notranslate"><span class="pre">여자</span></code>)에 따라서 그룹으로 나누어 가구 구성원과 근로소득의 합을 계산해야 한다.</p>
+<p>메소드 <code class="docutils literal notranslate"><span class="pre">groupby(</span> <span class="pre">by=...)</span></code>는  지정된 열의 값으로 데이터프레임을 그룹(group)으로 나누어 준다. 메소드 <code class="docutils literal notranslate"><span class="pre">groupby(</span> <span class="pre">by=...)</span></code>는  <strong>데이터프레임을  물리적으로 그룹을 나누어 주는 것은 아니고 메소드에서 지정된 그룹을 데이터프레임에 적용하는 기능을 한다.</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">by=</span></code> 는 그룹을 나눌 때 사용되는 열을 리스트 형식으로 지정한다.</p></li>
+<li><p>메소드 <code class="docutils literal notranslate"><span class="pre">groupby(</span> <span class="pre">by=...)</span></code> 로 만들어진 데이터프레임의 자료 형식은 <code class="docutils literal notranslate"><span class="pre">DataFrameGroupBy</span></code>이다. 따라서 보통 데이터프레임에 적용되는 메소드들을 사용할 수 없는 경우가 있다.</p></li>
+</ul>
+<p>이제 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df</span></code> 를 연도 <code class="docutils literal notranslate"><span class="pre">가구주_성별코드</span></code>를 이용하여 그룹화된 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df_group</span></code>을 만들어 보자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_group</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span> <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;가구주_성별코드&quot;</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>그룹화된 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df_cgroup</span></code> 은 보통 데이터프레임과 다르게 출력해주는 내용이 없다. 그 이유는 그룹화된 데이터프레임은 그룹에 대한 정보만 가진 특별한 자료의 형식을 가진다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_group</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x10850e190&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df_group</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.groupby.generic.DataFrameGroupBy
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h2>그룹별 요약<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>이제 아래의 코드가 어떤 결과를 내는지 보자.</p>
+<p>결과는 그룹으로 지정된 가구주의 성별로  각 그룹의 모든 가구 구성원과 근로소득를 더해서 성별 가구 구성원과 근로소득의 총합을 계산해준다.</p>
+<ul class="simple">
+<li><p>메소드 <code class="docutils literal notranslate"><span class="pre">sum()</span></code> 는  그룹화된 데이터프레임에서 그룹에 속한 모든 자료를 더해준다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_group</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>조사연도</th>
+      <th>가구고유번호</th>
+      <th>가구원수</th>
+      <th>만연령</th>
+      <th>자산금액</th>
+      <th>부채금액</th>
+      <th>근로소득</th>
+      <th>사업소득</th>
+      <th>재산소득</th>
+    </tr>
+    <tr>
+      <th>가구주_성별코드</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>남자</th>
+      <td>27996192</td>
+      <td>6765007143007</td>
+      <td>42754</td>
+      <td>735872</td>
+      <td>584996336</td>
+      <td>103494340</td>
+      <td>48411503</td>
+      <td>18327356</td>
+      <td>3946501</td>
+    </tr>
+    <tr>
+      <th>여자</th>
+      <td>8842176</td>
+      <td>2105583534116</td>
+      <td>8118</td>
+      <td>260328</td>
+      <td>77381988</td>
+      <td>12220015</td>
+      <td>6097083</td>
+      <td>1955531</td>
+      <td>457507</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>위의 코드는 모든 연속형 변수에 대한 그룹별 총합을 구해준다.</p>
+<p>아레와 같이 필요한 열만 먼저 선택해서 그룹별 총합을 구할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_group</span><span class="p">[[</span><span class="s1">&#39;가구원수&#39;</span><span class="p">,</span><span class="s1">&#39;근로소득&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>가구원수</th>
+      <th>근로소득</th>
+    </tr>
+    <tr>
+      <th>가구주_성별코드</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>남자</th>
+      <td>42754</td>
+      <td>48411503</td>
+    </tr>
+    <tr>
+      <th>여자</th>
+      <td>8118</td>
+      <td>6097083</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>위의 결과를 보면 만들어진 데이터 프레임에서 다음과 같은 특성이 보인다.</p>
+<ul class="simple">
+<li><p>열이름이  한 칸 위로 올라가 있다. 이는 문자로 된 열이름(column name)이 비어있다는 것이다.</p></li>
+<li><p>행인덱스가 <code class="docutils literal notranslate"><span class="pre">가구주_성별코드</span></code> 로 되어 있으며 숫자로 된 행인덱스가 없는 것을 알 수 있다.</p></li>
+</ul>
+<p>우리가 사용할 수 있는 유용한 데이터프레임을 만들기 위해서는 인덱스의 재구성이 필요하다. 메소드 <code class="docutils literal notranslate"><span class="pre">reset_index()</span></code>를 사용해 보자.</p>
+<p>그룹별 정보를 가진 새로운 데이터프레임 <code class="docutils literal notranslate"><span class="pre">df_sex</span></code>를 만들어 보자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sex</span> <span class="o">=</span> <span class="n">df_group</span><span class="p">[[</span><span class="s1">&#39;가구원수&#39;</span><span class="p">,</span><span class="s1">&#39;근로소득&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_sex</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>가구주_성별코드</th>
+      <th>가구원수</th>
+      <th>근로소득</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>남자</td>
+      <td>42754</td>
+      <td>48411503</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>여자</td>
+      <td>8118</td>
+      <td>6097083</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>참고로 그룹별 총함이 아닌 평균값을 구할 수 있을까? <code class="docutils literal notranslate"><span class="pre">sum()</span></code> 이 아닌 <code class="docutils literal notranslate"><span class="pre">mean()</span></code> ₩메소드를 사용하면 된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_group</span><span class="p">[[</span><span class="s1">&#39;가구원수&#39;</span><span class="p">,</span><span class="s1">&#39;근로소득&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>가구주_성별코드</th>
+      <th>가구원수</th>
+      <th>근로소득</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>남자</td>
+      <td>3.078707</td>
+      <td>3486.102326</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>여자</td>
+      <td>1.850889</td>
+      <td>1390.123803</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="id3">
+<h2>여러 개의 그룹<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p>이제 두 개 이상의 범주형 변수의 조합으로 만들어진 그룹에 대한 방법을 알아봅니다.</p>
+<p>가ㅖ금융복지 데이터에서 <code class="docutils literal notranslate"><span class="pre">수도권여부</span></code> 와 <code class="docutils literal notranslate"><span class="pre">가구주_성별</span></code> 을 조합한 그룹에 대하여 각 금융항목에 대한 평균을 계산합니다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span> <span class="n">by</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;수도권여부&#39;</span><span class="p">,</span><span class="s1">&#39;가구주_성별코드&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>수도권여부</th>
+      <th>가구주_성별코드</th>
+      <th>조사연도</th>
+      <th>가구고유번호</th>
+      <th>가구원수</th>
+      <th>만연령</th>
+      <th>자산금액</th>
+      <th>부채금액</th>
+      <th>근로소득</th>
+      <th>사업소득</th>
+      <th>재산소득</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>비수도권</td>
+      <td>남자</td>
+      <td>2016.0</td>
+      <td>4.974142e+08</td>
+      <td>3.057023</td>
+      <td>53.978093</td>
+      <td>36027.228974</td>
+      <td>5691.092140</td>
+      <td>3191.019485</td>
+      <td>1389.669639</td>
+      <td>198.346764</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>비수도권</td>
+      <td>여자</td>
+      <td>2016.0</td>
+      <td>4.908458e+08</td>
+      <td>1.774295</td>
+      <td>61.939046</td>
+      <td>14026.637757</td>
+      <td>2067.442703</td>
+      <td>1156.900035</td>
+      <td>419.156740</td>
+      <td>81.298154</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>2016.0</td>
+      <td>4.677278e+08</td>
+      <td>3.119717</td>
+      <td>51.121174</td>
+      <td>53659.168853</td>
+      <td>10784.188840</td>
+      <td>4044.197793</td>
+      <td>1187.507183</td>
+      <td>446.537372</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>수도권</td>
+      <td>여자</td>
+      <td>2016.0</td>
+      <td>4.596471e+08</td>
+      <td>1.996040</td>
+      <td>54.456106</td>
+      <td>24496.046865</td>
+      <td>4148.110231</td>
+      <td>1832.094389</td>
+      <td>496.456766</td>
+      <td>147.920792</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>위의 코드에서 범주형 항목을 가진 열들은 <code class="docutils literal notranslate"><span class="pre">mean()</span></code> 메소드를 적용할 때 자동적으로 제외됨을 알 수 있다.</p>
+<p>그룹별 평균에서 <code class="docutils literal notranslate"><span class="pre">조사연도</span></code> 와 <code class="docutils literal notranslate"><span class="pre">가구고유번호</span></code> 의 평균은 의미가 없으므로 아레 코드를 이용하여 제외할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span> <span class="n">by</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;수도권여부&#39;</span><span class="p">,</span><span class="s1">&#39;가구주_성별코드&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;조사연도&#39;</span><span class="p">,</span><span class="s1">&#39;가구고유번호&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>수도권여부</th>
+      <th>가구주_성별코드</th>
+      <th>가구원수</th>
+      <th>만연령</th>
+      <th>자산금액</th>
+      <th>부채금액</th>
+      <th>근로소득</th>
+      <th>사업소득</th>
+      <th>재산소득</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>비수도권</td>
+      <td>남자</td>
+      <td>3.057023</td>
+      <td>53.978093</td>
+      <td>36027.228974</td>
+      <td>5691.092140</td>
+      <td>3191.019485</td>
+      <td>1389.669639</td>
+      <td>198.346764</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>비수도권</td>
+      <td>여자</td>
+      <td>1.774295</td>
+      <td>61.939046</td>
+      <td>14026.637757</td>
+      <td>2067.442703</td>
+      <td>1156.900035</td>
+      <td>419.156740</td>
+      <td>81.298154</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>수도권</td>
+      <td>남자</td>
+      <td>3.119717</td>
+      <td>51.121174</td>
+      <td>53659.168853</td>
+      <td>10784.188840</td>
+      <td>4044.197793</td>
+      <td>1187.507183</td>
+      <td>446.537372</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>수도권</td>
+      <td>여자</td>
+      <td>1.996040</td>
+      <td>54.456106</td>
+      <td>24496.046865</td>
+      <td>4148.110231</td>
+      <td>1832.094389</td>
+      <td>496.456766</td>
+      <td>147.920792</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebook/day2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="dataframe_summary.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2.2. </span>데이터프레임의 요약</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="dataframe_merge.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2.4. </span>데이터프레임의 결합</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">그룹별 요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">여러 개의 그룹</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 이용희
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
