@@ -17,6 +17,6 @@ chapters:
   - file: notebook/day3/day_intro
     sections:
       - file: notebook/day3/correlation
-      - file: notebook/day3/dataframe_exercize_01
-      - file: notebook/day3/dataframe_exercize_02
+      - file: notebook/day3/dataframe_exercise_01
+      - file: notebook/day3/dataframe_exercise_02
       - file: notebook/day3/practice_insurance
