@@ -20,3 +20,5 @@ chapters:
       - file: notebook/day3/dataframe_exercise_01
       - file: notebook/day3/dataframe_exercise_02
       - file: notebook/day3/practice_insurance
+  - file: notebook/day3/test_prepare    
+  - file: notebook/day3/test   
